@@ -41,8 +41,8 @@
         \item<+-> Let's consider a very simple experiment: a coin is tossed, and the outcome observed.
         \item<+-> What are the possible results ?
         \item<+-> Of course, "head" and "tails" !
-        \item<+-> The \textbf{sample space} of an experimnt is the set of all possible reults.
-        \item<+-> In the coin tossing exemple, it is just the set $\Omega = \{ \text{heads}, \text{tails}\}.$
+        \item<+-> The \textbf{sample space} of an experiment is the set of all possible results.
+        \item<+-> In the coin tossing example, it is just the set $\Omega = \{ \text{heads}, \text{tails}\}.$
         \item<+-> If a die is rolled, the sample space is $\Omega = \{ 1,2,3,4,5, 6\}.$
         \item<+-> In a physical system, $\Omega$ may be a subset of the real numbers,
         or somethin even more complicated.
@@ -125,7 +125,7 @@
     \frametitle{Some properties}
 \begin{block}{Probability space}
 A sample space $\Omega$ together with a $\sigma$-algebra of events $\mathcal{T}$ and
-a propability $P$ is called a \textbf{probability space}, denoted by 
+a probability $P$ is called a \textbf{probability space}, denoted by 
 $\left( \Omega, \mathcal{T}, P \right).$
 \end{block}
 \begin{block}{Set operations}
@@ -170,21 +170,41 @@ $\left( \Omega, \mathcal{T}, P \right).$
         \item<+-> As an example, for a die roll, it may be "result is odd".
         \item<+-> The sample space is thus reduced, and the probabilities must 
         be rescaled accordingly.
-        \item<+-> For the die example, teh sample space becomes $\{1,3,5\}$, and the probability 
+        \item<+-> For the die example, it is $\{1,3,5\}$, and the probability 
         to draw a $3$ is $1/3.$
     \end{itemize}
     \end{block}
     \begin{block}{Bayes' formula}
-        The contional probability of $A$ knowing $B$, denoted $P\left( A \vert B \right)$, is given by the Bayes' formula:
+        The conditional probability of $A$ knowing $B$, denoted $P\left( A \vert B \right)$, is given by the Bayes' formula:
         \begin{equation}
             P\left( A \vert B  \right) = \frac{P\left( A \cap B \right)}{P(B)}.
         \end{equation}
     \end{block}
 \end{frame}
+
 %10
 \begin{frame}
-    \frametitle{Playing with conditional probabilities}
-
-    
-
+    \frametitle{Decision tree}
+    \begin{block}{Useful formulas}
+    \begin{itemize}
+        \item<+-> Let $\left(B_n\right)$ be a countable sequence of pairwise disjoint events such that $\bigcup_n B_n = \Omega.$ For any event $A$,
+        one has the formula of total probabilities:
+        \begin{equation}
+            P\left( A \right) = \sum_n P\left( A \vert B_n \right) P\left( B_n \right).
+        \end{equation}
+        \item<+-> Given events $B_1 \dots B_n, A$, one has:
+        \begin{equation}
+            P\left( A \right) = P\left( A \vert B_1, \dots, B_n \right)P(B_n \vert B_{n-1}, \dots B_1)\dots P\left( B_1 \right).
+        \end{equation}
+       \end{itemize}
+    \end{block}
+    \begin{block}{Decision trees}
+        \begin{itemize}
+            \item<+-> A Bayesian decision tree is constructed by recursive application of the previous rules. 
+            \item<+-> An edge represents a conditional probability.
+            \item<+-> When moving on a path from a leaf to the root, the product of the probabilities on the edges is taken.
+            \item<+-> At the root, the probabilities of all leaf-to-root paths are added.
+            \item<+-> The final result is the probability of ending at the root.
+        \end{itemize}
+    \end{block}
 \end{frame}
