@@ -162,6 +162,24 @@ $\left( \Omega, \mathcal{T}, P \right).$
 \end{frame}
 %9
 \begin{frame}
+    \frametitle{Exercice}
+\begin{block}{A card game}
+   \begin{itemize}
+    \item<+-> A gambler draws a hand of 5 cards from a deck of 52.
+    \item<+-> What is the probability of having a four of a kind?
+    \item<+-> Hint: the number of ways to select $k$ elements in a set of $n$
+    is :
+    \begin{equation}
+        \begin{pmatrix}
+            n \\ k
+        \end{pmatrix} = \frac{n!}{k!\left( n-k \right)!}.
+    \end{equation}
+   \end{itemize} 
+\end{block}
+    
+
+\end{frame}
+\begin{frame}
     \frametitle{Conditional probability}
     \begin{block}{Motivation}
     \begin{itemize}
@@ -258,7 +276,7 @@ what is the probability that it has been produce by $F_1$ ?
         \item<+-> A random variable is said to be discrete if it takes its 
         values in a finite or infinite countable set.
         \item<+-> The law of such a random variable $X$ with values in a set $E$ is entirely determined
-        by the probabilities $p(x) = P_X\left( \{x\} \right), x \in E.$
+        by its \textbf{distribution} $p(x) = P_X\left( \{x\} \right), x \in E.$
     \end{itemize}
 \end{block}
 \begin{block}{Expected value}
@@ -275,6 +293,30 @@ what is the probability that it has been produce by $F_1$ ?
     \end{itemize}
 \end{block}
 \end{frame}
+\begin{frame}
+    \frametitle{Exercice}
+\begin{block}{Bernoulli random variable}
+    \begin{itemize}
+        \item<+-> A bernoulli random variable $X$ can take only two values: $0$ and $1$.
+        \item<+-> If $P\left( X=1 \right)  = p, $ can you compute $P\left( X=0 \right) ?$
+        \item<+-> Compute $E\left[ X \right].$
+    \end{itemize}
+\end{block}
+\begin{block}{Binomial random variable}
+    \begin{itemize}
+        \item<+-> A binomial random variable $X$ with parameters $n \in \N, p \in [0,1]$ has 
+        distribution:
+        \begin{equation}
+            p(k) = \begin{pmatrix}
+                n \\ k
+            \end{pmatrix} p^k \left( 1-p \right)^{n-k}, k = 0 \dots n.
+        \end{equation}
+        \item<+-> Find $E\left[ X \right].$
+    \end{itemize}
+\end{block}
+    
+
+\end{frame}
 %15
 \begin{frame}
     \frametitle{Expected value}
@@ -289,6 +331,15 @@ what is the probability that it has been produce by $F_1$ ?
         \begin{equation}
             E\left[ X \right] \leq E \left[ Y \right]
         \end{equation}
+       
+    \end{itemize}
+\end{block}
+\end{frame}
+%16
+\begin{frame}
+    \frametitle{Moments}
+\begin{block}{The expected value in a general sense}
+    \begin{itemize} 
         \item<+-> If $g \colon \R \to \R$ is piecewise continuous and
         \begin{equation}
             \sum_{x \in E} \lvert g(x) \rvert p(x) < +\infty,
@@ -297,26 +348,54 @@ what is the probability that it has been produce by $F_1$ ?
         \begin{equation}
             E\left[ g(X) \right] = \sum_{x \in E}  g(x) p(x)
         \end{equation}
-    \end{itemize}
-\end{block}
-\end{frame}
-%16
-\begin{frame}
-    \frametitle{Variance}
-\begin{block}{Definition}
-    \begin{itemize}
-    \item<+->
-The variance of the discrete random variable $X$ is:
+    \item<+-> The variance of the discrete random variable $X$ is:
     \begin{equation}
         V(X) = E \left[ \left( X - E\left[ X \right] \right)^2 \right]
     \end{equation}
     \item<+-> It measures the dispersion of $X$ around its expected value.
     \end{itemize}
 \end{block}
-\begin{block}{Properties}
+\end{frame}
+%17
+\begin{frame}
+    \frametitle{Moments}
+\begin{block}{Higher order moments}
+    \begin{itemize} 
+        \item<+-> Let $n$ be an integer. The $n$-th moment of $X$ is, if it
+        exists:
+        \begin{equation}
+            E\left[ X^n \right].
+        \end{equation}
+        \item<+-> The moment generating function is the function:
+        \begin{equation}
+            t \mapsto m_X(t) = E\left[ e^{tX} \right]
+        \end{equation}
+    \item <+-> If its domain contains $0$, then:
+    \begin{equation}
+        E\left[ X^n \right] = m^{(n)}(0),
+    \end{equation}
+    where $m^{(n)}$ denotes the $n$-th derivative of $m_X$.
+\end{itemize}
+\end{block}
+\end{frame}
+%18
+\begin{frame}
+    \frametitle{Conditioning}
+\begin{block}{Independence}
     \begin{itemize}
-        \item<+->
+        \item<+-> By the Bayes' formula:
+        \begin{equation}
+            P\left( X = x \vert Y = y \right) = \frac{P\left( X = x, Y = y \right)}{P(Y=y)}.
+        \end{equation}
+        \item<+-> If $P\left( X = x, Y = y \right) = P\left( X = x \right)P\left( Y = y \right)$, then
+        $P\left( X = x \vert Y = y \right) = P\left( X = x \right).$
+        \item<+-> In such a case, $X,Y$ are said to be \textbf{independent}.
+        \item<+-> If $X,Y$ are independent, then $E\left[ XY \right] = E[X]E[Y].$
+        \item<+-> If $X_1, \dots, X_n$ are pairwise independent, then:
+        \begin{equation}
+            V\left( X_1 + \dots + X_n \right) = V\left( X_1 \right) + \dots + V\left( X_n \right).
+        \end{equation}
     \end{itemize}
 \end{block}
-
 \end{frame}
+%19
