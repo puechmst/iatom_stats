@@ -5,7 +5,7 @@
     \frametitle{A bit of history}
 \begin{block}{Games of chance}
     \begin{itemize}
-        \item<+-> According to popular belief, knights returning from the Crusades introduced a die game named "Hazard."
+        \item<+-> According to popular belief, knights returning from the Crusades introduced a dice game named "Hazard."
          Although the rules were complicated, the game attracted many players.
         \item<+-> The mathematician Gerolamo Cardano, in the middle of the 16th century, starts to investigate the odds of winning
         in a game of chance. He gives the first definition of the probability of an event as the ratio of
@@ -184,7 +184,7 @@ $\left( \Omega, \mathcal{T}, P \right).$
 
 %10
 \begin{frame}
-    \frametitle{Decision tree}
+    \frametitle{Around Bayes' formula}
     \begin{block}{Useful formulas}
     \begin{itemize}
         \item<+-> Let $\left(B_n\right)$ be a countable sequence of pairwise disjoint events such that $\bigcup_n B_n = \Omega.$ For any event $A$,
@@ -196,15 +196,127 @@ $\left( \Omega, \mathcal{T}, P \right).$
         \begin{equation}
             P\left( A \right) = P\left( A \vert B_1, \dots, B_n \right)P(B_n \vert B_{n-1}, \dots B_1)\dots P\left( B_1 \right).
         \end{equation}
+        \item<+-> Conditioning can be reversed using the next formula, provided $P(B) \neq 0:$
+        \begin{equation}
+            P\left( B \vert A \right) = \frac{P\left( A \vert B \right) P(B)}{P(A)}
+        \end{equation}
        \end{itemize}
     \end{block}
-    \begin{block}{Decision trees}
-        \begin{itemize}
-            \item<+-> A Bayesian decision tree is constructed by recursive application of the previous rules. 
-            \item<+-> An edge represents a conditional probability.
-            \item<+-> When moving on a path from a leaf to the root, the product of the probabilities on the edges is taken.
-            \item<+-> At the root, the probabilities of all leaf-to-root paths are added.
-            \item<+-> The final result is the probability of ending at the root.
-        \end{itemize}
-    \end{block}
+\end{frame}
+%11
+\begin{frame}
+    \frametitle{Exercice}
+Two factories, denoted $F_0, F_1$ are producing components.  The end customer 
+receives a component that comes from $F_0$ with probability $0.3$. Furthermore,
+the probability of the component being defective is $0.1$ when coming from factory $F_0$
+and $0.06$ when coming from factory $F_1$. If the recived component is defective,
+what is the probability that it has been produce by $F_1$ ?
+
+\end{frame}
+%12
+\begin{frame}
+    \frametitle{Random variables}
+\begin{block}{Definition}
+    Given two sample spaces $E,F$ equipped with respective $\sigma$-algebras of events 
+    $\mathcal{T},\mathcal{F}$, a mapping $X \colon E \to F$ is said to be 
+    a random variable if, for any event $A \in \mathcal{F}$, $X^{-1}\left( A \right)$
+    is an event of $\mathcal{T}.$
+\end{block}
+\begin{block}{Example}
+    Consider a die roll with $E=\{1,2,3,4,5,6\}$ and 
+    $\mathcal{T}=\{E,\emptyset,\{2,4,6\},\{1,3,5\}\}$. Let $F=\{0,1\}, \mathcal{F}=\mathcal{P}(F).$
+    The mapping $X$ that associates to an even number the value 0 and 1 to an odd number
+    is a random variable. However, $Y$ that maps any value less than 3 to 0 and the
+    others to 1 is not.
+\end{block}
+\end{frame}
+%13
+\begin{frame}
+    \frametitle{The law of a random variable}
+\begin{block}{Définition}
+    \begin{itemize}
+        \item<+-> In the previous example,  
+        the probability of the event $X=0$ is $1/2$, the probability of  
+        $X^{-1}\left( 0 \right)=\{2,4,6\}.$
+        \item<+-> If $X$ is a random variable on a probability space $\left( E,\mathcal{T},P \right)$
+        with values in $F$, the law of $X$ is the probability on $\mathcal{F}$ defined by:
+        \begin{equation}
+            P_X \left( A \right) = P \left( X^{-1}(A) \right).
+        \end{equation}
+    \item<+-> In many cases, the outcome of an experiment is impossible to observe, but 
+    some agregated value is, e.g. pressure of temperature of a gas.
+    \item<+-> Formally, this is a random variable.
+    \item<+-> Only its law has some interest.
+   \end{itemize} 
+\end{block}    
+\end{frame}
+%14
+\begin{frame}
+    \frametitle{Discrete random variables}
+\begin{block}{The law of a discrete random variable}
+    \begin{itemize}
+        \item<+-> A random variable is said to be discrete if it takes its 
+        values in a finite or infinite countable set.
+        \item<+-> The law of such a random variable $X$ with values in a set $E$ is entirely determined
+        by the probabilities $p(x) = P_X\left( \{x\} \right), x \in E.$
+    \end{itemize}
+\end{block}
+\begin{block}{Expected value}
+    \begin{itemize}
+        \item<+-> Let $X$ be a discrete random variable with values in $E\subset \R$. 
+        Its expected value is defined as:
+        \begin{equation}
+            E\left[ X \right] = \sum_{x \in E} x p(x),
+        \end{equation}
+        provided:
+        \begin{equation}
+            \sum_{x \in E} \lvert x \rvert p(x)< +\infty.
+         \end{equation}
+    \end{itemize}
+\end{block}
+\end{frame}
+%15
+\begin{frame}
+    \frametitle{Expected value}
+\begin{block}{Properties}
+    \begin{itemize}
+        \item<+-> If $X,Y$ are discrete random variables with values in $E \subset \R$ and 
+        $\lambda$ is a real number, then:
+        \begin{equation}
+            E\left[ \lambda X + Y \right] = \lambda E\left[ X \right] + E \left[ Y \right].
+        \end{equation}
+        \item<+-> The expected value is monotone. If $X \leq Y$, then:
+        \begin{equation}
+            E\left[ X \right] \leq E \left[ Y \right]
+        \end{equation}
+        \item<+-> If $g \colon \R \to \R$ is piecewise continuous and
+        \begin{equation}
+            \sum_{x \in E} \lvert g(x) \rvert p(x) < +\infty,
+        \end{equation}
+        then one defines:
+        \begin{equation}
+            E\left[ g(X) \right] = \sum_{x \in E}  g(x) p(x)
+        \end{equation}
+    \end{itemize}
+\end{block}
+\end{frame}
+%16
+\begin{frame}
+    \frametitle{Variance}
+\begin{block}{Definition}
+    \begin{itemize}
+    \item<+->
+The variance of the discrete random variable $X$ is:
+    \begin{equation}
+        V(X) = E \left[ \left( X - E\left[ X \right] \right)^2 \right]
+    \end{equation}
+    \item<+-> It measures the dispersion of $X$ around its expected value.
+    \end{itemize}
+\end{block}
+\begin{block}{Properties}
+    \begin{itemize}
+        \item<+->
+    \end{itemize}
+\end{block}
+
 \end{frame}
