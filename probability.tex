@@ -154,7 +154,7 @@ $\left( \Omega, \mathcal{T}, P \right).$
         \begin{equation}
             1 = P\left( \Omega \right) = \sum_{i=1}^6 P\left( \{i\} \right),
         \end{equation}
-        on deduce $P\left( \{i\} \right) = 1/6, i=1 \dots 6.$
+        one deduces $P\left( \{i\} \right) = 1/6, i=1 \dots 6.$
         \item<+-> The probability of any event can then be obtained by summing the probabilities
         of its elements. 
     \end{itemize}
@@ -165,8 +165,9 @@ $\left( \Omega, \mathcal{T}, P \right).$
     \frametitle{Exercice}
 \begin{block}{A card game}
    \begin{itemize}
-    \item<+-> A gambler draws a hand of 5 cards from a deck of 52.
-    \item<+-> What is the probability of having a four of a kind?
+    \item<+-> A gambler randomly draws a hand of 5 cards from a deck of 52. Can you find 
+    a sample space describing this experiment ?
+    \item<+-> If the probabilities of all hands are equal, what is the probability of having a four of a kind ?
     \item<+-> Hint: the number of ways to select $k$ elements in a set of $n$
     is :
     \begin{equation}
@@ -176,16 +177,15 @@ $\left( \Omega, \mathcal{T}, P \right).$
     \end{equation}
    \end{itemize} 
 \end{block}
-    
-
 \end{frame}
+%10
 \begin{frame}
     \frametitle{Conditional probability}
     \begin{block}{Motivation}
     \begin{itemize}
-        \item<+-> In many cases, there is an information about the outcome of
+        \item<+-> In many cases, there is some information about the outcome of
         an experiment.
-        \item<+-> As an example, for a die roll, it may be "result is odd".
+        \item<+-> As an example, for a die roll, it may be "the result is odd".
         \item<+-> The sample space is thus reduced, and the probabilities must 
         be rescaled accordingly.
         \item<+-> For the die example, it is $\{1,3,5\}$, and the probability 
@@ -199,8 +199,7 @@ $\left( \Omega, \mathcal{T}, P \right).$
         \end{equation}
     \end{block}
 \end{frame}
-
-%10
+%11
 \begin{frame}
     \frametitle{Around Bayes' formula}
     \begin{block}{Useful formulas}
@@ -221,7 +220,7 @@ $\left( \Omega, \mathcal{T}, P \right).$
        \end{itemize}
     \end{block}
 \end{frame}
-%11
+%12
 \begin{frame}
     \frametitle{Exercice}
 Two factories, denoted $F_0, F_1$ are producing components.  The end customer 
@@ -231,7 +230,7 @@ and $0.06$ when coming from factory $F_1$. If the recived component is defective
 what is the probability that it has been produce by $F_1$ ?
 
 \end{frame}
-%12
+%13
 \begin{frame}
     \frametitle{Random variables}
 \begin{block}{Definition}
@@ -248,7 +247,7 @@ what is the probability that it has been produce by $F_1$ ?
     others to 1 is not.
 \end{block}
 \end{frame}
-%13
+%14
 \begin{frame}
     \frametitle{The law of a random variable}
 \begin{block}{Définition}
@@ -262,13 +261,14 @@ what is the probability that it has been produce by $F_1$ ?
             P_X \left( A \right) = P \left( X^{-1}(A) \right).
         \end{equation}
     \item<+-> In many cases, the outcome of an experiment is impossible to observe, but 
-    some agregated value is, e.g. pressure of temperature of a gas.
+    some agregated value is, e.g. the pressure or the temperature of a gas.
     \item<+-> Formally, this is a random variable.
     \item<+-> Only its law has some interest.
    \end{itemize} 
 \end{block}    
 \end{frame}
-%14
+
+%15
 \begin{frame}
     \frametitle{Discrete random variables}
 \begin{block}{The law of a discrete random variable}
@@ -293,6 +293,21 @@ what is the probability that it has been produce by $F_1$ ?
     \end{itemize}
 \end{block}
 \end{frame}
+%16
+\begin{frame}
+    \frametitle{Exercice}
+\begin{block}{A game of chance}
+    \begin{itemize}
+        \item<+-> Two dice are rolled and their values are added.
+        \item<+-> Show that the sum is a random variable $X$ with values in 
+        $\{2, \dots, 12 \}.$
+        \item<+-> Find the distribution of $X$.
+        \item<+-> If you bet at the start, you'll win five times
+         your original bet if $X \geq 10.$ Is this rule fair?
+    \end{itemize}
+\end{block}
+\end{frame}
+%17
 \begin{frame}
     \frametitle{Exercice}
 \begin{block}{Bernoulli random variable}
@@ -314,10 +329,9 @@ what is the probability that it has been produce by $F_1$ ?
         \item<+-> Find $E\left[ X \right].$
     \end{itemize}
 \end{block}
-    
 
 \end{frame}
-%15
+%18
 \begin{frame}
     \frametitle{Expected value}
 \begin{block}{Properties}
@@ -335,7 +349,7 @@ what is the probability that it has been produce by $F_1$ ?
     \end{itemize}
 \end{block}
 \end{frame}
-%16
+%19
 \begin{frame}
     \frametitle{Moments}
 \begin{block}{The expected value in a general sense}
@@ -356,7 +370,7 @@ what is the probability that it has been produce by $F_1$ ?
     \end{itemize}
 \end{block}
 \end{frame}
-%17
+%20
 \begin{frame}
     \frametitle{Moments}
 \begin{block}{Higher order moments}
@@ -378,7 +392,7 @@ what is the probability that it has been produce by $F_1$ ?
 \end{itemize}
 \end{block}
 \end{frame}
-%18
+%21
 \begin{frame}
     \frametitle{Conditioning}
 \begin{block}{Independence}
@@ -398,4 +412,28 @@ what is the probability that it has been produce by $F_1$ ?
     \end{itemize}
 \end{block}
 \end{frame}
-%19
+%22
+\begin{frame}
+    \frametitle{Exercice}
+    \begin{block}{A pair of dice... again !}
+        \begin{itemize}
+            \item<+-> Let $X,Y$ be two independent random variables corresponding
+            to the respective values of two die throws. Compute~:
+            \[
+            E\left[ X \right], \, E\left[ Y \right], \, E\left[ X + Y \right].
+            \]
+            \item<+-> Same question with the variances.
+        \end{itemize}
+    \end{block}
+    \begin{block}{A taste of estimation theory}
+        \begin{itemize}
+            \item<+-> Let $X_1, \dots X_n$ be a sequence of independent random variables and
+            let:
+            \[
+            \bar{X} = \frac{1}{n} \sum_{i=1}^n X_i.
+            \]
+            \item<+-> Compute $E\left[ \bar{X} \right], V\left( \bar{X} \right).$ Whart happens 
+            if $n \to +\infty ?$
+        \end{itemize}
+    \end{block}    
+\end{frame}
