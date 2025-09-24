@@ -183,3 +183,126 @@
     \end{itemize}
 \end{block}
 \end{frame}
+\begin{frame}
+    \frametitle{Passengers dataset}
+    \begin{block}{Data collection}
+        \begin{itemize}
+            \item<+-> The dataset, collected from the site \url{https://data.europa.eu/data/datasets?locale=en}
+            is stored in the file \texttt{avia\_paoc\_monthly.csv} that can be retrieved on ecampus in the folder \texttt{Datasets}.
+            \item<+-> Launch PowerBI and select \texttt{Get data from other sources}.
+            \item<+-> Select \texttt{Text/CSV} and open the file.
+            \item<+-> A table view of the dataset appears.
+        \end{itemize}
+    \end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Passengers dataset}
+    \begin{block}{Data transformation}
+        \begin{itemize}
+            \item<+-> PowerBI offers the opportunity to transform the data.
+            \begin{figure}[htbp]
+                \centering
+                \includegraphics[scale=0.3]{power_bi_transform_data.png}
+                \caption{Data transform.}
+                \label{fig:data_transform}
+            \end{figure}
+            \item<+-> We are only interested in the total number of passengers carried by country, so all the rows
+            below row 32 must be removed.
+            \item<+-> Select \texttt{Keep rows}, then \texttt{Keep top rows} and finally enter 32. 
+        \end{itemize}
+    \end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Passengers dataset}
+    \begin{block}{Final transformations}
+        \begin{itemize}
+            \item<+-> In the first column, a description of the data includes at the end a geographic information. 
+            \item<+-> Select the first column, right click on it, the select \texttt{replace values}.
+            \item<+-> Copy all the text in the first cell, except the final two-characters country code.
+            \item<+-> Keep the replacement text empty and click \texttt{replace}. 
+        \end{itemize}
+    \end{block}
+   
+    
+\end{frame}
+\begin{frame}
+    \frametitle{Passengers dataset}
+    \begin{block}{Transposing datasets}
+        \begin{itemize}
+            \item<+-> Datasets must have their values in columns.
+            \item<+-> Select the tab \texttt{Transform}, then \texttt{Transpose}.
+            \item<+-> Return to the \texttt{Home} tab and select \texttt{Use first row as headers}.
+            \item<+-> The label of the first column is not very informative. Right click 
+            on it and select \texttt{Rename}.
+        \end{itemize}
+    \end{block}
+
+\end{frame}
+\begin{frame}
+    \frametitle{Passengers dataset}
+\begin{block}{Cleaning data}
+    \begin{itemize}
+        \item<+-> A dataset may have blank row. Check yours and remove
+        them if needed (\texttt{Remove rows} tab).
+        \item<+-> Some values may be missing. In this dataset, they are coded 
+        as ":". 
+        \item<+-> The column "MK" has such values. Right click on it, then use 
+        \texttt{Replace values} to change ":" by "0".
+        \item<+-> finally, change the type of the column to \texttt{Whole number}.
+    \end{itemize}
+\end{block}    
+   \begin{block}{Applying transforms}
+    \begin{itemize}
+        \item<+-> Select the \texttt{Close and apply} to apply the transforms.
+        \item<+-> It is time to save your work (tab \texttt{File}) ! 
+    \end{itemize}
+   \end{block} 
+\end{frame}
+\begin{frame}
+    \frametitle{Passengers dataset}
+\begin{block}{Visual exploration of the dataset}
+    \begin{itemize}
+        \item<+-> Return to the \texttt{Home} tab, and start populating the report.
+        \item<+-> Text boxes or visual can be added. 
+        \item<+-> Select a text box and enter the text you wish to start your report.
+        \item<+-> Select \texttt{New visual}. A new box appears (by default a bar chart).
+        \item<+-> Select \texttt{Date} in the \texttt{Data} right pane and drag 
+        the \texttt{Month} field to the visual. This defines the "x" axis.
+        \item<+-> You can add data to your visual by selecting columns in the \texttt{Data} pane 
+        or by dragging them. 
+        \item<+-> Try changing the visual and see what happens.
+    \end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Passengers dataset}
+\begin{block}{Data aggregation}
+    \begin{itemize}
+        \item<+-> In the "passengers" dataset, there is a one-to-one mapping
+        between a month and the number of passengers. 
+        \item<+-> What happens if we decide to plot against the quarter ?
+        \item<+-> Uncheck \texttt{Month} in \texttt{Date} on the right pane and
+        select \texttt{Quarter}.
+        \item<+-> The visual now displays the total number of passengers for each quarter.
+        \item<+-> In the \texttt{Y axis} part of the \texttt{visualization} pane,
+        try to change \texttt{Sum} to \texttt{Average}.
+        \item<+-> The aggregation of values is an important feature in PowerBI.
+    \end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Passengers dataset}
+\begin{block}{Measures}
+    \begin{itemize}
+        \item<+-> A measure is a value that can be computed from the dataset.
+        \item<+-> It may be viewed as a practical implementation of a random variable,
+        a concept introduced later in the course.
+        \item<+-> Since measures are computed on-the-fly, they always reflect the most up-to-Date dataset.
+        \item<+-> Using them is a must in PowerBI.
+        \item<+-> Create a \texttt{New quick measure} on the "passengers" dataset that sums the amount of 
+        carried passengers by quarter for a given country (select the one you prefer).
+        \item<+-> Use a visual to plot the result.
+        \item<+-> Custom measures can be used, provided you know the "DAX" language.
+    \end{itemize}
+\end{block}
+\end{frame}
