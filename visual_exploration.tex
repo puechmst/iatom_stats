@@ -306,3 +306,47 @@
     \end{itemize}
 \end{block}
 \end{frame}
+\begin{frame}[fragile]
+    \frametitle{PowerBI and R}
+\begin{block}{R as a data source}
+    \begin{itemize}
+        \item<+-> Open the \texttt{Get data} tab, then select \texttt{R}.
+        \item<+-> In the script box, type:
+        \begin{lstlisting}{language=R}
+dataset <- data.frame(x=1:100,y=runif(n=100,min=0,max=10))
+        \end{lstlisting}
+        \item<+-> Observe the result in PowerBI. What happens if the name \texttt{dataset} for the ouput variable is changed ?
+        \item<+-> Create two data frames in the R script: what happens in PowerBI?
+    \end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}[fragile]
+    \frametitle{PowerBI and R}
+\begin{block}{R as a data processor}
+    \begin{itemize}
+        \item<+-> Open the \texttt{Get data} tab, then select \texttt{Run R script}.
+        \item<+-> In the script box, type:
+        \begin{lstlisting}{language=R}
+output <- dataset
+output$z <- as.numeric(dataset$y)+1
+        \end{lstlisting}
+        \item<+-> A new column named \texttt{z} was added and its values are those of column \texttt{y} plus 1.
+    \end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}[fragile]
+    \frametitle{PowerBI and R}
+\begin{block}{Visuals}
+    \begin{itemize}
+        \item<+-> On the \texttt{visualizations} pane, select the \texttt{R} icon.
+        \item<+-> Drag the \textt{y} field in the visual.
+        \item<+-> In the script box, type:
+        \begin{lstlisting}{language=R}
+hist(dataset$y)
+        \end{lstlisting}
+        \item<+-> An histogram is displayed in the visual. 
+        \item<+-> This may be useful when a given visual, like the histogram, is not implemented in PowerBI or requires a plugin.
+    \end{itemize}
+\end{block}
+\end{frame}
+    

@@ -34,6 +34,7 @@
 \usepackage{geometry}
 \usepackage{xspace}
 \usepackage{url}
+\usepackage{listings}
 \newcommand{\themename}{\textbf{\textsc{bluetemp}\xspace}}%metropolis}}\xspace}
 \DeclareMathOperator{\sinc}{sinc}
 \graphicspath{{./images/}}
@@ -49,6 +50,14 @@
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
 \newcommand{\C}{\ensuremath{\mathbb{C}}}
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
+
+\lstset{numbers=left, numberstyle=\footnotesize, stepnumber=1,firstnumber=1,
+    numbersep=5pt,language=R,
+    stringstyle=\ttfamily,
+    basicstyle=\footnotesize, 
+    showstringspaces=false,
+    breaklines=true
+}
 
 \begin{document}
 {
