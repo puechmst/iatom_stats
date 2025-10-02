@@ -45,7 +45,7 @@
         \item<+-> In the coin tossing example, it is just the set $\Omega = \{ \text{heads}, \text{tails}\}.$
         \item<+-> If a die is rolled, the sample space is $\Omega = \{ 1,2,3,4,5, 6\}.$
         \item<+-> In a physical system, $\Omega$ may be a subset of the real numbers,
-        or somethin even more complicated.
+        or something even more complicated.
     \end{itemize}
 \end{block}    
 \end{frame}
@@ -80,11 +80,11 @@
         $\bar{A}=\{HT,TH,TT\}$ is "at least one tails was observed".
     \end{itemize}
 \end{block}
-\begin{block}{Exercice}
+\begin{block}{Exercise}
     \begin{itemize}
         \item<+-> Find the sample space $\Omega$ associated with the roll of a die.
         \item<+-> What are the respective subsets $A,B$ of $\Omega$ corresponding to the observations
-        "the result is greater than or equal to 3","the result is an even number".
+        "the result is greater than or equal to 3","the result is an even number"?
         \item<+-> Describe the events $A\cup B$, $\bar{A}.$
     \end{itemize}
 \end{block}
@@ -129,7 +129,7 @@ a probability $P$ is called a \textbf{probability space}, denoted by
 $\left( \Omega, \mathcal{T}, P \right).$
 \end{block}
 \begin{block}{Set operations}
-    Lat $\left( \Omega, \mathcal{T}, P \right)$ be a probability space. 
+    Let $\left( \Omega, \mathcal{T}, P \right)$ be a probability space. 
     Let $A,B$ be events. Then:
     \begin{itemize}
         \item<+-> $P\left(\bar{A} \right) = 1 - P(A).$
@@ -162,7 +162,7 @@ $\left( \Omega, \mathcal{T}, P \right).$
 \end{frame}
 %9
 \begin{frame}
-    \frametitle{Exercice}
+    \frametitle{Exercise}
 \begin{block}{A card game}
    \begin{itemize}
     \item<+-> A gambler randomly draws a hand of 5 cards from a deck of 52. Can you find 
@@ -222,7 +222,7 @@ $\left( \Omega, \mathcal{T}, P \right).$
 \end{frame}
 %12
 \begin{frame}
-    \frametitle{Exercice}
+    \frametitle{Exercise}
 Two factories, denoted $F_0, F_1$ are producing components.  The end customer 
 receives a component that comes from $F_0$ with probability $0.3$. Furthermore,
 the probability of the component being defective is $0.1$ when coming from factory $F_0$
@@ -295,7 +295,7 @@ what is the probability that it has been produce by $F_1$ ?
 \end{frame}
 %16
 \begin{frame}
-    \frametitle{Exercice}
+    \frametitle{Exercise}
 \begin{block}{A game of chance}
     \begin{itemize}
         \item<+-> Two dice are rolled and their values are added.
@@ -309,7 +309,7 @@ what is the probability that it has been produce by $F_1$ ?
 \end{frame}
 %17
 \begin{frame}
-    \frametitle{Exercice}
+    \frametitle{Exercise}
 \begin{block}{Bernoulli random variable}
     \begin{itemize}
         \item<+-> A bernoulli random variable $X$ can take only two values: $0$ and $1$.
@@ -414,7 +414,7 @@ what is the probability that it has been produce by $F_1$ ?
 \end{frame}
 %22
 \begin{frame}
-    \frametitle{Exercice}
+    \frametitle{Exercise}
     \begin{block}{A pair of dice... again !}
         \begin{itemize}
             \item<+-> Let $X,Y$ be two independent random variables corresponding
@@ -432,8 +432,82 @@ what is the probability that it has been produce by $F_1$ ?
             \[
             \bar{X} = \frac{1}{n} \sum_{i=1}^n X_i.
             \]
-            \item<+-> Compute $E\left[ \bar{X} \right], V\left( \bar{X} \right).$ Whart happens 
+            \item<+-> Compute $E\left[ \bar{X} \right], V\left( \bar{X} \right).$ What happens 
             if $n \to +\infty ?$
         \end{itemize}
     \end{block}    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Poisson distribution}
+\begin{block}{A model for random events}
+   \begin{itemize}
+    \item<+-> Given a time interval of length $\left[ t_0, t_1 \right]$, one counts the number of occurrences $X$ of an event.
+    \item<+-> The random variable $X$ is said to have a Poisson distribution with rate $\lambda$ if:
+    \begin{equation}
+        P\left( X=k \right) = \frac{\left( \lambda T \right)^k}{k!} e^{-\lambda T},
+    \end{equation}
+    where $T=t_1-t_0.$
+    \item<+-> $E\left[ X \right] = V(X)= \lambda T.$
+    \item<+-> The Poisson distribution models a situation where the occurrences of an event are independent and occur at constant rate.
+   \end{itemize} 
+
+\end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Exercise}
+\begin{block}{Distribution of a sum}
+    \begin{itemize}
+        \item<+-> The moment generating function (MGF) of a random variable is the function $m_X(t)=E\left[ e^{tX} \right].$ It is
+        characteristic of a distribution.  Prove that if $X,Y$ are independent, $m_{X+Y}(t)=m_X(t)m_Y(t).$
+        \item<+-> Compute the MGF of $X$ with Poisson distribution of rate $\lambda.$
+        \item<+-> Let $X,Y$ be independent random variables with Poisson distributions of respective rates $\lambda,\mu.$ 
+        Show that $X+Y$ has Poisson distribution of rate $\lambda+\mu.$
+    \end{itemize}
+\end{block}
+\begin{block}{Selecting events}
+    Let $X$ be a random variable with Poisson distribution of rate $\lambda$. The underlying events are selected at random
+    with probability $p$ and counted, yielding a random variable $Y$. Prove that $Y$ has Poisson distribution with rate $p \lambda.$
+\end{block}    
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Real random variables}
+\begin{block}{Definition}
+    \begin{itemize}
+    \item<+-> Let $\left( \Omega, \mathcal{T}, P \right)$ be a measure space. A mapping $X \colon \Omega \to \R$ is
+    said to be a real random variable if, for any $t \in \R$, $\{ \omega \vert X(\omega) \leq t \}$ is an event in $\mathcal{T}.$
+    \item<+-> If $X$ is a real random variable, its cumulative distribution function (CDF) is the mapping:
+    \begin{equation}
+        F_x \colon t \in R \mapsto P\left( X \leq t \right).
+    \end{equation}
+    \item<+-> $\lim_{t \to -\infty}F_x(t) = 0, \, \lim_{t \to +\infty} F_x(t)=1.$
+    \item<+-> $F_x$ is right continuous and admits a limit to the left.
+    \item<+-> If $F_x$ is differentiable, its derivative is called the density of $X$.
+    \end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Real random variables}
+\begin{block}{Expected value}
+    \begin{itemize}
+    \item<+-> Let $X$ be a real random variable with density $p_X$. 
+    \item<+-> If $g \colon \R \to \R$ is piecewise continuous, then one defines:
+    \begin{equation}
+        E\left[ g(X) \right] = \int_{\R} g(t) p_X(t) dt
+    \end{equation} 
+    provided:
+\begin{equation}
+    \int_{\R} \lvert g(t) \rvert p_X(t) dt < +\infty.
+\end{equation}
+    \item<+-> As a special case:
+    \begin{equation}
+        P\left( X \in [a,b] \right) = E \left[ 1_{[a,b]}(X) \right] = \int_a^b p_X(t) dt.
+    \end{equation}
+\end{itemize}
+\end{block}
+    
+
 \end{frame}
