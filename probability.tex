@@ -502,11 +502,120 @@ what is the probability that it has been produce by $F_1$ ?
 \begin{equation}
     \int_{\R} \lvert g(t) \rvert p_X(t) dt < +\infty.
 \end{equation}
-    \item<+-> As a special case:
+    \item<+-> As special cases:
     \begin{equation}
-        P\left( X \in [a,b] \right) = E \left[ 1_{[a,b]}(X) \right] = \int_a^b p_X(t) dt.
+        \begin{split}
+        & P\left( X \in [a,b] \right) = E \left[ 1_{[a,b]}(X) \right] = \int_a^b p_X(t) dt \\
+        & F_X(t) = \int_{-\infty}^t p_X(t) dt.
+        \end{split}
     \end{equation}
 \end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Real random variables}
+\begin{block}{Joint CDF and density}
+    \begin{itemize}
+        \item<+-> If $X,Y$ are real random variables, the CDF of the couple $(X,Y)$ is the mapping:
+        \begin{equation}
+            F_{X,Y} \colon (s,t) \in \R^2 \mapsto P\left( X \leq s, Y \leq t \right).
+        \end{equation}
+        \item<+-> Taking the derivative with respect to $s,t$ allows defining the joint density:
+        \begin{equation}
+            p_{X,Y}(x,y)= \frac{\partial^2}{\partial_s \partial_t} F_{X,Y}(t,s) \vert_{x,y}.
+        \end{equation}
+        \item<+-> $X,Y$ are said to be independent if:
+        \begin{equation}
+            F_{X,Y}(s,t) = F_X(s) F_Y(t). 
+        \end{equation}
+    \end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Marginal densities}
+   \begin{itemize}
+    \item<+-> Let $X,Y$ be a couple of real random variables with joint density $p_{X,Y}.$
+    \item<+-> The density of $X$ (resp. $Y$) can be obtained as:
+    \begin{equation}
+        p_X(x) = \int_{\R} p_{X,Y}(x,t) dt \text{ (resp.) } p_Y(y) = \int_{\R} p_{X,Y}(s,y) ds
+    \end{equation}
+    \item<+-> The conditional density of $X$ knowing $Y$ is defined as:
+    \begin{equation}
+        p\left(X\vert Y=y\right)(s) = \frac{p_{X,Y}(s,y)}{p_Y(y)}.
+    \end{equation}
+    \item<+-> If $X,Y$ are independent, $p(X \vert Y=y)(s) = p_X(s)$ or, equivalently,
+    $p_{X,Y}(x,y)=p_X(x)p_Y(y).$
+   \end{itemize} 
+\end{frame}
+\begin{frame}
+    \frametitle{Characteristic function}
+    \begin{block}{Definition}
+       \begin{itemize}
+        \item<+-> Let $X$ be a real random variable. Its characteristic function is:
+        \begin{equation}
+            \phi_X \colon t \in \R \mapsto E\left[ e^{i t X} \right].
+        \end{equation}
+        \item<+-> Using the density $p_X$, it can be computed as:
+        \begin{equation}
+            \phi_X(t)  \int_{\R} e^{i t x} p_X(x) dx.
+        \end{equation}
+       \end{itemize} 
+    \end{block}
+    \vskip -24pt
+    \begin{block}{Properties}
+        \begin{itemize}
+            \item<+-> If two random variables have the same characteristic function, they have the same distribution.
+            \item<+-> If $X,Y$ are independent, $\phi_{X+Y}(t)=\phi_X(t)\phi_Y(t).$
+            \item<+-> $E\left[ X^k \right] = i^{-k} \phi_X^{(k)}(0), k \in \N.$
+        \end{itemize}
+    \end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Uniform distribution}
+\begin{itemize}
+    \item<+-> The uniform distribution on an interval $[a,b]$ has density:
+    \begin{equation}
+        p(x)= \begin{cases}
+            \frac{1}{b-a} & x \in [a,b], \\
+            0 & \text{ otherwise.}
+        \end{cases}
+    \end{equation}
+    \item<+-> If $X$ has uniform distribution on $[a,b]$, then:
+    \begin{equation}
+        \begin{split}
+            &E\left[ X \right] = \frac{a+b}{2}, \, V(X) = \frac{(b-a)^2}{12}, \\
+            &\phi_X(t) = \frac{e^{itb}-e^{ita}}{t(b-a)}.
+        \end{split}
+    \end{equation}
+\end{itemize}
+\end{frame}
+\begin{frame}
+    \frametitle{Normal distribution}
+\begin{block}{Density}
+    \begin{itemize}
+        \item<+-> Let $\mu \in \R, \sigma > 0.$ A real random variable $X$
+        is said to have a normal distribution $\mathcal{N}(\mu,\sigma^2)$ if its
+        density is:
+        \begin{equation}
+            p_X(t)=\frac{1}{\sqrt{2 \pi}\sigma}e^{-\frac{(t-\mu)^2}{2 \sigma^2}}.
+        \end{equation}
+        \item<+-> If $X \sim \mathcal{N}(\mu,\sigma^2)$, then:
+        \begin{equation}
+            Y = \frac{X-\mu}{\sigma} \sim \mathcal{N}(0,1).
+        \end{equation}
+    \end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Normal distribution}
+\begin{block}{Moments}
+    If $X\sim \mathcal{N}\left(\mu, \sigma^2\right):$
+    \begin{equation}
+        \begin{split}
+            &E\left[ X \right] = \mu, \, V\left( X \right) = \sigma^2,\\
+            & \phi_X(t)= \exp\left( i \mu t - \sigma^2 t^2 / 2 \right).
+        \end{split}
+    \end{equation}
 \end{block}
     
 
