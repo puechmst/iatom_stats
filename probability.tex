@@ -1,4 +1,4 @@
-\section{Probability theory}
+n\section{Probability theory}
 
 %1
 \begin{frame}
@@ -617,6 +617,145 @@ what is the probability that it has been produce by $F_1$ ?
         \end{split}
     \end{equation}
 \end{block}
-    
+\begin{block}{Cumulative distribution function}
+    \begin{itemize}
+        \item<+-> There is no closed-form expression for the CDF of 
+        a $\mathcal{N}(\mu, \sigma^2)$ distribution, but it can be evaluated
+        numerically.
+        \item<+-> If $\Phi$ is the CDF of a $\mathcal{N}(0,1)$ distribution,
+        then the CDF of a $\mathcal{N}(\mu,\sigma^2)$ distribution is:
+        \begin{equation}
+            \Phi \left( \frac{x-\mu}{\sigma} \right).
+        \end{equation}
+    \end{itemize}
+\end{block}    
+\end{frame}
+\begin{frame}
+    \frametitle{Central limit theorem}
+\begin{block}{Convergence in distribution}
+    A sequence $(X_n)_{n \N}$ of real random variables is said
+    to converge in distribution to a random variable $X$ if:
+    \begin{equation}
+        \forall t \in \R, \, \lim_{n \to +\infty} P\left( X_n \leq t \right) = 
+        P\left( X \leq t \right).
+    \end{equation}
+\end{block}
+\begin{theorem}[Central limit]
+   If $(X_n)_{n \in \N}$ is a sequence of independent, identically distributed
+   real random variables, then the sequence of random variables 
+   $\sqrt{n}\left( \bar{X}_n - \mu \right)$ converges in distribution to
+    $X \sim \mathcal{N}(0,\sigma^2)$, with:
+    \begin{equation}
+        \bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i, \, \mu=E\left[ X_i \right], \sigma^2=V\left( X_i \right).
+    \end{equation} 
+\end{theorem}
+\end{frame}
+\begin{frame}
+    \frametitle{Exponential distribution}
+\begin{itemize}
+    \item<+-> The exponential distribution with rate $\lambda > 0$ has 
+    density:
+    \begin{equation}
+        p(x;\lambda)=
+        \begin{cases}
+            & \lambda e^{-\lambda x}, x \geq 0, \\
+            & 0, x < 0.
+        \end{cases}
+    \end{equation}
+    \item<+-> If $X$ is exponentially distributed with rate $\lambda:$
+    \begin{equation}
+             E\left[ X \right] = \frac{1}{\lambda}, V(X)=\frac{1}{\lambda^2}, 
+             \phi_X(t)=\frac{\lambda}{\lambda -it}.
+    \end{equation}
+    \item<+-> The exponential distribution is memoryless:
+    \begin{equation}
+        P\left( X > t+s \vert X > s \right)=P\left( X > t \right), \, s,t \geq 0.
+    \end{equation}
+\end{itemize}
+\end{frame}
+\begin{frame}
+    \frametitle{Vector random variables}
+\begin{block}{CDF and density}
+    \begin{itemize}
+        \item<+-> Let $\left(\Omega , \mathcal{T}, P  \right)$ be a measure space. Let $X \colon \Omega \to \R^n$ be a mapping.
+        $X$ is said to be a vector (or multivariate) random variable iff:
+        \begin{equation}
+            \left\{ \omega \vert X_1(\omega) \leq t_1, \dots, X_n(\omega) \leq t_n \right\} \in \mathcal{T},  \, (t_1,\dots t_n) \in \R^n.
+        \end{equation}
+        \item<+-> The CDF of $X$ is:
+        \begin{equation}
+           F_x(t_1,\dots,t_n)=P\left( X_1 \leq t_1, \dots, X_n \leq t_n \right).
+        \end{equation}
+        \item<+-> Taking the partial derivatives yields the density:
+        \begin{equation}
+            p_X(t_1,\dots, t_n) = \frac{\partial^n F_X(t_1,\dots,t_n) }{\partial t_1\dots \partial t_n}.
+        \end{equation}
+    \end{itemize}
+\end{block}
+\end{frame}
 
+\begin{frame}
+    \frametitle{Vector random variables}
+\begin{block}{Moments}
+    \begin{itemize}
+        \item<+-> The expected value of a vector random variable $X$ is just
+        the vector of the expected values of the coordinates:
+        \begin{equation}
+            E\left[ X \right] = \left( E\left[ X_1 \right], \dots, E\left[ X_n \right] \right).
+        \end{equation} 
+        \item<+-> The density of $X_i, i=1\dots n$ can be computed by integration:
+        \begin{equation}
+            p_{X_i}(x) = \int_{\R^{n-1}} p_X\left( t_1, \dots, x, \dots t_n \right) dt_1,\dots dt_n,
+        \end{equation}
+        where $x$ occurs in the i-th position.
+    \end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Vector random variables}
+\begin{block}{Moments}
+    \begin{itemize}
+        \item<+-> Higher moments are tensors, generally difficult to compute.
+        \item<+-> The covariance matrix of two random variables is:
+        \begin{equation}
+            Cov(X,Y) = E\left[ X Y^t \right] - E\left[ X \right]E\left[ Y \right]^t.
+        \end{equation}
+        \item<+-> The density of a vector normal distribution $\mathcal{N}\left( \mu, \Sigma \right)$ is:
+        \begin{equation}
+            P_X(x) = \frac{1}{(2\pi)^{n-2}\det(\Sigma)^{-1/2}} 
+            \exp \left( \frac{1}{2} (x-\mu)^t \Sigma^{-1} (x-\mu)\right),
+        \end{equation}
+        with $\mu = E\left[ X \right], \, \Sigma= Cov(X,X).$
+        \end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Vector random variables}
+\begin{block}{Characteristic function}
+    \begin{itemize}
+        \item<+-> The characteristic function of a vector random variable $X$ is defined as:
+        \begin{equation}
+            \phi_X(t_1,\dots,t_n) = E\left[ e^{i \left( t_1X_1 + \dots + t_n X_n \right)} \right].
+        \end{equation}
+        \item<+-> For a $\mathcal{N}\left( \mu, \Sigma \right)$ distribution, it is:
+        \begin{equation}
+            \phi_X(t)= \exp \left( i \mu^t t- \frac{1}{2} t^t \Sigma t\right).
+        \end{equation}
+        \end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Vector random variables}
+\begin{block}{Central limit theorem}
+    \begin{itemize}
+        \item<+-> If $X_1, \dots X_n$ are independent, identically distributed 
+        vector random variables, then $\sqrt{n} \left( \bar{X}_n - \mu \right)$
+        converges in distribution to $\mathcal{N}\left( 0,  \Sigma \right)$ with:
+        \begin{equation}
+            \bar{X}_n = \frac{1}{n} \sum_{i=1}^n X_i, \, \Sigma = Cov(X_i, X_i).
+        \end{equation}
+        \item<+-> In practice, almost all problems in data analysis can be solved 
+        using the vector CLT.
+        \end{itemize}
+\end{block}
 \end{frame}
