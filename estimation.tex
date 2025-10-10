@@ -1,0 +1,29 @@
+
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\section{Estimation}
+\begin{frame}[fragile]
+    \frametitle{Introductory example}
+\begin{block}{Delays dataset}
+   \begin{itemize}
+    \item<+-> Download the file "delays.csv" and open it in PowerBI. Use the "Table" pane and find the maximum and minimum values of the
+    third column. 
+    \item<+-> Negative delays are not of interest for us, not delays higher than 10h, that are outliers. Create a new table with the command:
+    \begin{verbatim}
+        pos_delays = FILTER(delays,delays[Column3]>=0 && delays[Column3]<=36000)
+    \end{verbatim}
+    \item<+-> Using an "R" visual, plot the histogram of the delays in the new table.
+\end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Introductory example}
+\begin{block}{Modeling the delays}
+   \begin{itemize}
+    \item<+-> Compute the inverse of the average of the delays. 
+   \end{itemize} 
+\end{block}
+    
+
+\end{frame}
+
+\end{document}

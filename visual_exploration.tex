@@ -1,12 +1,14 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
 \section{Visual exploration of data}
 \begin{frame}
     \frametitle{An introduction to PowerBI}
 \begin{block}{A report generator}
     \begin{itemize}
-        \item<+-> Power BI is a reporting and data analytics tool.
+        \item<+-> Power BI is a reporting and data analytics tool
         that simplifies data collection, transformation, 
         and visualization tasks.
-        \item<+-> It is designed to be extensible and tends has become
+        \item<+-> It is designed to be extensible and has become
         the de facto standard in the industry.
     \end{itemize}
 \end{block}
@@ -242,7 +244,7 @@
     \frametitle{Passengers dataset}
 \begin{block}{Cleaning data}
     \begin{itemize}
-        \item<+-> A dataset may have blank row. Check yours and remove
+        \item<+-> A dataset may have blank rows. Check yours and remove
         them if needed (\texttt{Remove rows} tab).
         \item<+-> Some values may be missing. In this dataset, they are coded 
         as ":". 
@@ -297,7 +299,7 @@
         \item<+-> A measure is a value that can be computed from the dataset.
         \item<+-> It may be viewed as a practical implementation of a random variable,
         a concept introduced later in the course.
-        \item<+-> Since measures are computed on-the-fly, they always reflect the most up-to-Date dataset.
+        \item<+-> Since measures are computed on-the-fly, they always reflect the most up-to-date dataset.
         \item<+-> Using them is a must in PowerBI.
         \item<+-> Create a \texttt{New quick measure} on the "passengers" dataset that sums the amount of 
         carried passengers by quarter for a given country (select the one you prefer).
@@ -349,4 +351,4 @@ hist(dataset$y)
     \end{itemize}
 \end{block}
 \end{frame}
-    
+\end{document}    

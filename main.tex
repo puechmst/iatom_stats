@@ -58,14 +58,13 @@
     showstringspaces=false,
     breaklines=true
 }
-
+\usepackage{subfiles}
 \begin{document}
 {
 \setbeamercolor{background canvas}{bg=NavyBlue!50!DarkOliveGreen, fg=white}
 \setbeamercolor{normal text}{fg=white}
 \maketitle
 }%This is the colour of the first slide. bg= background and fg=foreground
-
 \metroset{titleformat frame=smallcaps} %This changes the titles for small caps
 
 \begin{frame}{Outline}
@@ -76,10 +75,10 @@
 
 
 
-\include{introduction}
-\include{visual_exploration}
-\include{probability}
-
+\subfile{introduction}
+\subfile{visual_exploration}
+\subfile{probability}
+\subfile{estimation}
 
 
 % \begin{frame}[standout]{This is other type of slide}
