@@ -1,4 +1,9 @@
 \documentclass[main.tex]{subfiles}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+\usepackage{graphicx}
+
+
 \begin{document}
 \section{Estimation}
 \begin{frame}[fragile]
@@ -37,6 +42,143 @@ FILTER(delays,delays[Column3]>=0 && delays[Column3]<=10000)
         \item<+-> The associated population is an hypothetical measure space describing all possible delays.
     \end{itemize}
 \end{block}
+\end{frame}
+
+\begin{frame}
+
+\begin{block}{Illustration: Population vs sample}
+    \begin{center}
+\begin{tikzpicture}[
+  box/.style={draw, thick, rounded corners, minimum width=3cm, minimum height=2cm, align=center},
+  arrow/.style={-Latex, thick},
+  note/.style={align=center, font=\footnotesize}
+]
+
+% Population box
+\node[box] (pop) {Population\\ $\mu$, $\sigma$};
+
+% Sample box
+\node[box, right=3cm of pop] (samp) {Sample\\ $\hat{\mu}$, $\hat{\sigma}$};
+
+% Probability theory arrow (Population → Sample)
+\draw[arrow, bend left=10] (pop) to node[above, note]{\textbf{Probability theory}\\[2pt] $P(X|\theta)$\\(distribution)} (samp);
+
+% Statistical inference arrow (Sample → Population)
+\draw[arrow, bend left=10] (samp) to node[below, note]{\textbf{Statistical inference}\\[2pt] $P(\theta|X)$\\(Machine Learning, Confidence Interval, \\hypothesis testing, prediction)} (pop);
+
+
+\end{tikzpicture}
+\end{center}
+\vspace{0.5em}
+\begin{itemize}
+  \item \textbf{Goal:} Model and quantify uncertainty using data.
+  \item Descriptive statistics:  summarize the sample
+
+  \item Probability theory: from population assumptions $\rightarrow$ data behavior.
+  \item Statistical inference: from observed data $\rightarrow$ population insights.
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Exercise with R: Understand estimators\\}
+Objectives:
+\begin{itemize}
+  \item Understand the concept of estimation in statistics.
+  \item Differentiate between sample and population parameters.
+  \item Use R to estimate the population mean and variance.
+  \item Explore the effect of sample size on estimation accuracy.
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Part 1: Generating Data\\}
+\textbf{Task (5 min):} Simulate a population using $$\texttt{population <- rnorm(100000, mean = 50, sd = 10)}$$
+% \begin{lstlistings}[language=R]
+% set.seed(123)
+% population <- rnorm(100000, mean = 50, sd = 10)
+% hist(population, main = "Population Distribution", col = "skyblue")
+% \end{lstlistings}
+\textbf{Answer questions:}
+\begin{itemize}
+  \item What probability distribution does the population follow? What are the population parameters ($\mu$, $\sigma^2$)?
+  \item Do we usually know these values in practice?
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Part 2: Sample Estimation\\}
+\textbf{Task (10 min):} Draw samples of different sizes of 10, 50, and 200, and compute estimates:\\
+ $$\texttt{sample10 <- sample(population, 10);}$$
+$$\texttt{mean(sample10);  var(sample10)}$$
+\textbf{Answer questions:}
+\begin{itemize}
+  \item Do larger samples give more stable estimates of the mean?
+  \item How close are the sample means to the true mean (50)?
+  \item Does sample variance approximate the population variance well?
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{\\Part 3: Sampling Distribution\\}
+\textbf{Task (10 min):} Examine variability in estimates using simulation:
+\begin{enumerate}
+\small
+  \item Set the sample size $n=30$
+  \item Set the number of simulations $\text{nsim} = 1000$
+  \item Draw 1000 random samples (of size 30) from the population and record each sample mean.
+  \item Plot a histogram of the sample means.
+    \item Compute and report the mean and standard deviation of the sample means.
+\end{enumerate}
+% \begin{lstlistings}[language=R]
+% n <- 30
+% nsim <- 1000
+% means <- replicate(nsim, mean(sample(population, n)))
+% hist(means, main="Sampling Distribution of the Mean", col="lightgreen")
+% mean(means); sd(means)
+% \end{lstlistings}
+\textbf{Answer questions:}
+\begin{itemize}
+\small
+  \item What is the average of the sample means?
+  \item Does it approximate the true mean (unbiasedness)?
+  \item What happens to the spread (or variability) of the means if $n$ increases?
+  \item Can you relate this to the Central Limit Theorem?
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Summary and Reflection\\}
+\textbf{Key Takeaways:}
+\begin{itemize}
+  \item Sample estimates approximate unknown population parameters.
+  \item Larger samples yield more precise estimates.
+  \item Sampling distributions provide a basis for inference.
+  % \item Confidence intervals quantify estimation uncertainty.
+\end{itemize}
+
+\textbf{Reflection:}
+\begin{itemize}
+  \item What assumptions underlie these estimations?
+  \item How would results differ for non-normal populations?
+  \item How might bias arise in practical data collection?
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+
+
+\begin{frame}
+    \frametitle{Estimation}
 \begin{block}{Statistical model}
    \begin{itemize}
     \item<+-> An statistical model is a triple $\left( \Omega, \mathcal{T}, \mathcal{P} \right)$ where $\Omega$ is a sample space,
@@ -44,9 +186,6 @@ FILTER(delays,delays[Column3]>=0 && delays[Column3]<=10000)
     \item<+-> The population associated with the studied sample hopefully belongs to $\mathcal{P}$\dots
    \end{itemize} 
 \end{block}
-\end{frame}
-\begin{frame}
-    \frametitle{Estimation}
 \begin{block}{Kinds of models}
 \begin{itemize}
     \item<+-> If $\mathcal{P}$ can be fully described by a finite number of parameters, the model is said to be \textbf{parametric}. As an example, 
