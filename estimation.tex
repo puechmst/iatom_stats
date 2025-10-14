@@ -52,8 +52,75 @@ FILTER(delays,delays[Column3]>=0 && delays[Column3]<=10000)
     \item<+-> If $\mathcal{P}$ can be fully described by a finite number of parameters, the model is said to be \textbf{parametric}. As an example, 
     the set of exponential distributions is parameterized by the rate.
     \item<+-> If $\mathcal{P}$ can be partly described by a finite number of parameters, the model is said to be \textbf{semi-parametric}.
+    \item<+-> In all the other cases, the model is \textbf{non-parametric}.
+    \item<+-> In the course, only parametric models are considered. 
 \end{itemize}    
 \end{block}
+ 
+\end{frame}
+\begin{frame}
+    \frametitle{Estimation}
+\begin{block}{Estimation}
+    \begin{itemize}
+        \item<+-> Let the population has probability measure $P \in \mathcal{P}$.
+        \item<+-> Assume that independent random variables $X_1,\dots, X_n$ have the identical distribution $P$.
+        \item<+-> Estimation is the process of finding $P$ using the sample $X_1,\dots,X_n$.
+        \item<+-> When the model is parametric, an estimator of a parameter is a 
+        random variable $Y=f\left( X_1,\dots ,X_n \right)$ where $f$ does not depend on the parameter.
+    \end{itemize}
+ \end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Bias and consistency}
+\begin{itemize}
+\item<+-> Assuming$\theta$ is the true value of the parameter to be estimated,
+and $f\left( X_1, \dots, X_n \right)$ is the estimator, the bias is:
+\begin{equation}
+    E\left[ f\left( X_1,\dots X_n \right) \right] - \theta.
+\end{equation}
+\item<+-> If the bias vanishes, the estimator is said to be unbiased.
+\item<+-> The mean square error of the estimator is:
+\begin{equation}
+    MSE_f(X_1,\dots, X_n)= E\left[ \left( f(X_1, \dots X_n) - \theta \right)^2 \right]
+\end{equation}
+\item<+-> An estimator is said to be consistent if, for any $\epsilon > 0$:
+\begin{equation}
+    \lim_{n \to +\infty}P\left( \lvert f(X_1,\dots,X_n) - \theta\rvert > \epsilon \right) = 0.
+\end{equation} 
+\end{itemize}
+\end{frame}
+\begin{frame}
+    \frametitle{Consistency}
+    \begin{block}{Bienaymé–Chebyshev inequality}
+        Let $X$ be a random variable. Then, for any
+        $\epsilon > 0$:
+        \begin{equation}
+            \label{eq:Chebyshev}
+            P\left( \lvert X- E\left[ X \right] \rvert \geq \epsilon \right) \leq \frac{V(X)}{\epsilon^2}.
+        \end{equation}
+    \end{block}
+    \begin{block}{MSE and consistency}
+        \begin{itemize}
+            \item<+-> The next two properties are consequences of \ref{eq:Chebyshev}.
+            \item<+-> If an estimator $f\left( X_1, \dots, X_n \right)$ is unbiased, then it is consistent
+    if its variance goes to 0 as $n$ goes to $+\infty$.
+            \item<+-> For any estimator, if $\lim_{n \to +\infty} MSE_f\left( X_1,\dots,X_n \right) = 0,$ then
+            the estimator is consistent.
+            \item<+-> From now, an estimator of $\theta$ will be denoted $\hat{\theta},$ letting the sample be implicit.
+        \end{itemize}
+    \end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Method of moments}
+\begin{itemize}
+    \item<+-> This procedure is one of the most common in practice.
+    \item<+-> If the parameter $\theta$ to be estimated is a moment $E\left[ X^k \right]$ of the population probability measure, then
+    the sample mean:
+    \begin{equation}
+        \hat{\theta} = \frac{1}{n} \sum_{i=1}^n X_i^k
+    \end{equation}
+    is an unbiased and consistent estimator.
+\end{itemize}
     
 
 \end{frame}
