@@ -176,6 +176,7 @@ Objectives:
   \item Differentiate between sample and population parameters.
   \item Use R to estimate the population mean and variance.
   \item Explore the effect of sample size on estimation accuracy.
+  \item Visualize and interpret the consistency of an estimator.
 \end{itemize}
 \end{block}
 \end{frame}
@@ -186,29 +187,27 @@ Objectives:
 \textbf{Task (5 min):} Simulate a population using
 {\footnotesize
 \begin{verbatim}
-population <-
+population <- 
 data.frame(n=1:100000,
- x=rnorm(n=100000, mean = 50, sd = 10))
-\end{verbatim}} 
+           x=rnorm(n=100000, mean = 50, sd = 10))
+\end{verbatim}}
 to create a dataset in PowerBI.
-% \begin{lstlistings}[language=R]
-% set.seed(123)
-% population <- rnorm(100000, mean = 50, sd = 10)
-% hist(population, main = "Population Distribution", col = "skyblue")
-% \end{lstlistings}
 
 \textbf{Answer questions:}
 \begin{itemize}
   \item<+-> Plot the histogram of the population.
-  \item<+-> What probability distribution does the population follow? Can you relate the population parameters ($\mu$, $\sigma^2$) to moments ?
+  \item<+-> What probability distribution does the population follow? 
+  \item<+-> Can you relate the population parameters ($\mu$, $\sigma^2$) to the moments?
   \item<+-> Do we usually know these values in practice?
 \end{itemize}
 \end{block}
 \end{frame}
 
+
+
 \begin{frame}
 \begin{block}{Part 2: Sample Estimation}
-\textbf{Task (10 min):} Draw samples of different sizes of 10, 50, and 200, and compute sample mean and variance using DAX functions \texttt{SAMPLE,AVERAGEX,VARX.S}.
+\textbf{Task (10 min):} Draw samples of different sizes (10, 50, and 200), and compute the sample mean and variance using DAX functions \texttt{SAMPLE}, \texttt{AVERAGEX}, \texttt{VARX.S}.
 
 \textbf{Answer questions:}
 \begin{itemize}
@@ -220,18 +219,18 @@ to create a dataset in PowerBI.
 \end{frame}
 
 
-\begin{frame}
-\begin{block}{\\Part 3: Sampling Distribution\\}
-\textbf{Task (10 min):} Examine variability in estimates using simulation:
-\begin{enumerate}
-\small
+\begin{frame}[fragile]
+\begin{block}{Part 3: Sampling Distribution}
+\textbf{Task (10 min):} Examine variability in estimates using simulation.
+\begin{enumerate}\small
   \item Set the sample size $n=30$
   \item Set the number of simulations $\text{nsim} = 1000$
   \item Draw 1000 random samples (of size 30) from the population and record each sample mean.
   \item Plot a histogram of the sample means.
-    \item Compute and report the mean and standard deviation of the sample means.
+  \item Compute and report the mean and standard deviation of the sample means.
 \end{enumerate}
 % \begin{lstlistings}[language=R]
+
 % n <- 30
 % nsim <- 1000
 % means <- replicate(nsim, mean(sample(population, n)))
@@ -239,25 +238,55 @@ to create a dataset in PowerBI.
 % mean(means); sd(means)
 % \end{lstlistings}
 \textbf{Answer questions:}
-\begin{itemize}
-\small
+\begin{itemize}\small
   \item What is the average of the sample means?
   \item Does it approximate the true mean (unbiasedness)?
-  \item What happens to the spread (or variability) of the means if $n$ increases?
+  \item What happens to the spread (variability) of the means if $n$ increases?
   \item Can you relate this to the Central Limit Theorem?
 \end{itemize}
 \end{block}
 \end{frame}
 
 
+
+
+\begin{frame}[fragile]
+\begin{block}{Part 4: Understanding Consistency}
+\textbf{Task (5 min):} Investigate the consistency of the sample mean estimator.  
+Recall: An estimator $\hat{\theta}_n$ is \textbf{consistent} if, for any $\epsilon > 0$,
+\[
+    \lim_{n \to +\infty} P\left(|\hat{\theta}_n - \theta| > \epsilon\right) = 0.
+\]
+
+\textbf{Run R codes:}
+{\footnotesize
+\begin{verbatim}
+sample_sizes <- c(10, 50, 200, 1000, 5000)
+true_mean <- mean(population$x)
+errors <- sapply(sample_sizes, function(n) { 
+ means <- replicate(1000, mean(sample(population$x, n))); 
+ mean(abs(means - true_mean) > 1) })
+deviation_proba <- data.frame(n = sample_sizes, P_error = errors)
+\end{verbatim}}
+
+\textbf{Answer questions:}
+\begin{itemize}\small
+  \item What happens to $P(|\bar{X}_n - \mu| > 1)$ as $n$ increases?
+  \item How does this result illustrate the definition of consistency?
+  \item Why is the sample mean a consistent estimator of the population mean?
+\end{itemize}
+\end{block}
+\end{frame}
+
+
 \begin{frame}
-\begin{block}{Summary and reflection}
+\begin{block}{Summary and Reflection}
 \textbf{Key Takeaways:}
 \begin{itemize}
   \item Sample estimates approximate unknown population parameters.
   \item Larger samples yield more precise estimates.
-  \item Sampling distributions provide a basis for inference.
-  % \item Confidence intervals quantify estimation uncertainty.
+  \item Sampling distributions provide a foundation for inference.
+  \item Consistency ensures that estimators converge to the true value as sample size grows.
 \end{itemize}
 
 \textbf{Reflection:}
@@ -268,4 +297,5 @@ to create a dataset in PowerBI.
 \end{itemize}
 \end{block}
 \end{frame}
+
 \end{document}
