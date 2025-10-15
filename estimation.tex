@@ -169,7 +169,7 @@ and $f\left( X_1, \dots, X_n \right)$ is the estimator, the bias is:
 \end{frame}
 
 \begin{frame}
-\begin{block}{Exercise with R: Understand estimators\\}
+\begin{block}{Exercise with R: Understand estimators}
 Objectives:
 \begin{itemize}
   \item Understand the concept of estimation in statistics.
@@ -181,15 +181,22 @@ Objectives:
 \end{frame}
 
 
-\begin{frame}
-\begin{block}{Part 1: Generating Data\\}
-\textbf{Task (5 min):} Simulate a population using $$\texttt{population <- rnorm(100000, mean = 50, sd = 10)}$$
+\begin{frame}[fragile]
+\begin{block}{Part 1: Generating Data}
+\textbf{Task (5 min):} Simulate a population using
+{\footnotesize
+\begin{verbatim}
+population <-
+data.frame(n=1:100000,
+ x=rnorm(n=100000, mean = 50, sd = 10))
+\end{verbatim}} 
 to create a dataset in PowerBI.
 % \begin{lstlistings}[language=R]
 % set.seed(123)
 % population <- rnorm(100000, mean = 50, sd = 10)
 % hist(population, main = "Population Distribution", col = "skyblue")
 % \end{lstlistings}
+
 \textbf{Answer questions:}
 \begin{itemize}
   \item<+-> Plot the histogram of the population.
@@ -200,9 +207,9 @@ to create a dataset in PowerBI.
 \end{frame}
 
 \begin{frame}
-\begin{block}{Part 2: Sample Estimation\\}
-\textbf{Task (10 min):} Draw samples of different sizes of 10, 50, and 200, and compute sample mean and variance.
- $$\texttt{sample10 <- sample(population, 10);}$$
+\begin{block}{Part 2: Sample Estimation}
+\textbf{Task (10 min):} Draw samples of different sizes of 10, 50, and 200, and compute sample mean and variance using DAX functions \texttt{SAMPLE,AVERAGEX,VARX.S}.
+
 \textbf{Answer questions:}
 \begin{itemize}
   \item Do larger samples give more stable estimates of the mean?
@@ -244,7 +251,7 @@ to create a dataset in PowerBI.
 
 
 \begin{frame}
-\begin{block}{Summary and Reflection\\}
+\begin{block}{Summary and reflection}
 \textbf{Key Takeaways:}
 \begin{itemize}
   \item Sample estimates approximate unknown population parameters.
@@ -260,16 +267,5 @@ to create a dataset in PowerBI.
   \item How might bias arise in practical data collection?
 \end{itemize}
 \end{block}
-\end{frame}
-\begin{frame}[fragile]
-    \frametitle{Exponential distribution}
-    \begin{itemize}
-        \item<+-> This exercise is an illustration of the method of moments.
-        \item<+-> Using PowerBI and R, generate a sample from an exponential distribution with rate 2:
-\begin{verbatim}
-sim_exp <- data.frame(n=1:10000,x=rexp(10000,rate=2))
-\end{verbatim}
-        \item<+-> Compare the average of the dataset with the inverse of the rate. 
-    \end{itemize}
 \end{frame}
 \end{document}
