@@ -1,0 +1,89 @@
+\documentclass[main.tex]{subfiles}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+\usepackage{graphicx}
+
+\begin{document}
+\begin{frame}[fragile]
+    \frametitle{Exponential distribution}
+    \begin{itemize}
+        \item<+-> This exercise is an illustration of the method of moments.
+        \item<+-> Using PowerBI and R, generate a population from an exponential distribution with rate 2:
+\begin{verbatim}
+sim_exp <- data.frame(n=1:100000,x=rexp(100000,rate=2))
+\end{verbatim}
+        \item<+-> Compute the mean $m$ and the standard deviation $\sigma$ (square roort of the variance) on $1000$ samples is size $1000$.
+        \item<+-> Estimate the number of times $\lvert m - 0.5 \rvert$ (resp. $\lvert \sigma - 0.5 \rvert$) is greater than $0.026.$
+        \item<+-> In your opinion, which estimator of the inverse of the rate is the best one ?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Confidence intervals}
+    \begin{itemize}
+        \item<+-> A consistent estimator $\hat{\theta}$ will fall within a given interval around the true value $\theta$ with a probability close to 1
+        if the sample size is large enough.
+        \item<+-> In practice, the sample size is fixed, so that one wants to find $c$ such that:
+        \begin{equation}
+            P\left[ \lvert \hat{\theta} - \theta \rvert > c \right] = \alpha,
+        \end{equation}
+        where $\alpha \in [0,1]$ is a fixed value.
+        \item<+-> The interval:
+        \[
+        \left[ \hat{\theta}-c, \hat{\theta} + c \right]
+        \]
+        contains $\theta$ with probability $1- \alpha.$
+        \item<+-> $1-\alpha$ is called the confidence level.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Confidence intervals}
+    \begin{itemize}
+        \item<+-> Generally speaking, a confidence interval for $\theta$ at level $1-\alpha$ is a pair of estimators $\hat{\theta}_1, \hat{\theta}_2$ 
+        such that:
+        \[
+        P\left[\theta \in  \left[ \hat{\theta}_1, \hat{\theta}_2\right] \right] = 1-\alpha.
+        \]
+        \item<+-> A classical situation is when $\hat{\theta}$ is the sample mean:
+        \[
+        \hat{\theta} = \bar{X} = \frac{1}{n} \sum_{i=1}^n X_i.
+        \]
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Confidence intervals}
+    \begin{itemize}
+        \item<+-> Generally speaking, a confidence interval for $\theta$ at level $1-\alpha$ is a pair of estimators $\hat{\theta}_1, \hat{\theta}_2$ 
+        such that:
+        \[
+        P\left[\theta \in  \left[ \hat{\theta}_1, \hat{\theta}_2\right] \right] = 1-\alpha.
+        \]
+        \item<+-> A classical situation is when $\hat{\theta}$ is the sample mean:
+        \[
+        \hat{\theta} = \bar{X} = \frac{1}{n} \sum_{i=1}^n X_i.
+        \]
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Using the TCL}
+\begin{itemize}
+    \item<+-> When the sample mean is an unbiased estimator of $\theta$, then, in the limit of large samples:
+    \begin{equation}
+        Z = \frac{\sqrt{n}\left( \bar{X} - \theta \right)}{\sigma}
+    \end{equation}
+    is $\mathcal{N}(0,1)$-distributed.
+    \item<+-> For a given confidence level $1-\alpha$, one can find $c$ such that:
+    \begin{equation}
+        P\left[ \lvert Z \rvert \leq c \right] = 1-\alpha.
+    \end{equation}
+    \item<+-> A confidence interval for $\theta$ is then:
+    \begin{equation}
+        \left[ \bar{X} - \frac{\sigma c}{\sqrt{n}}, \bar{X} + \frac{\sigma c}{\sqrt{n}}\right]
+    \end{equation}
+    \item<+-> The approximation is correct provided $n \geq 30.$
+\end{itemize}
+\end{frame}
+\end{document}
