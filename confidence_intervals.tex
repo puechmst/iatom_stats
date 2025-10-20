@@ -45,22 +45,7 @@ sim_exp <- data.frame(n=1:100000,x=rexp(100000,rate=2))
         \[
         P\left[\theta \in  \left[ \hat{\theta}_1, \hat{\theta}_2\right] \right] = 1-\alpha.
         \]
-        \item<+-> A classical situation is when $\hat{\theta}$ is the sample mean:
-        \[
-        \hat{\theta} = \bar{X} = \frac{1}{n} \sum_{i=1}^n X_i.
-        \]
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Confidence intervals}
-    \begin{itemize}
-        \item<+-> Generally speaking, a confidence interval for $\theta$ at level $1-\alpha$ is a pair of estimators $\hat{\theta}_1, \hat{\theta}_2$ 
-        such that:
-        \[
-        P\left[\theta \in  \left[ \hat{\theta}_1, \hat{\theta}_2\right] \right] = 1-\alpha.
-        \]
-        \item<+-> A classical situation is when $\hat{\theta}$ is the sample mean:
+        \item<+-> A classical situation encountered is when $\hat{\theta}$ is the sample mean:
         \[
         \hat{\theta} = \bar{X} = \frac{1}{n} \sum_{i=1}^n X_i.
         \]
@@ -86,4 +71,16 @@ sim_exp <- data.frame(n=1:100000,x=rexp(100000,rate=2))
     \item<+-> The approximation is correct provided $n \geq 30.$
 \end{itemize}
 \end{frame}
+\begin{frame}
+    \frametitle{Exponential distribution}
+\begin{block}{Estimating the expected value}
+    \begin{itemize}
+        \item<+-> Going back to the example of the exponential distribution, and assuming one wants to 
+        estimate the inverse of the rate $\lambda^{-1}$, the sample mean is an unbiased estimator.
+        \item<+-> Using the TCL, can you find a confidence interval for $\lambda^{-1}$ at confidence level $0.90$ ?
+        \item<+-> Is the threshold $0.026$ used before coherent with what you found ?
+    \end{itemize}
+\end{block}
+\end{frame}
+
 \end{document}
