@@ -9,10 +9,11 @@
     \begin{itemize}
         \item<+-> This exercise is an illustration of the method of moments.
         \item<+-> Using PowerBI and R, generate a population from an exponential distribution with rate 2:
+{\footnotesize
 \begin{verbatim}
 sim_exp <- data.frame(n=1:100000,x=rexp(100000,rate=2))
-\end{verbatim}
-        \item<+-> Compute the mean $m$ and the standard deviation $\sigma$ (square roort of the variance) on $1000$ samples is size $1000$.
+\end{verbatim}}
+        \item<+-> Compute the mean $m$ and the standard deviation $\sigma$ (square root of the variance) on $1000$ samples of size $1000$.
         \item<+-> Estimate the number of times $\lvert m - 0.5 \rvert$ (resp. $\lvert \sigma - 0.5 \rvert$) is greater than $0.026.$
         \item<+-> In your opinion, which estimator of the inverse of the rate is the best one ?
     \end{itemize}
@@ -82,5 +83,76 @@ sim_exp <- data.frame(n=1:100000,x=rexp(100000,rate=2))
     \end{itemize}
 \end{block}
 \end{frame}
-
+\begin{frame}
+    \frametitle{The delta method}
+\begin{itemize}
+    \item<+-> Sometimes, the estimator is a function $g$ of the sample mean and the TCL cannot be applied directly.
+    \item<+-> However, if $g$ is continuously differentiable and the TCL gives:
+    \begin{equation}
+        \sqrt{n}\left( \bar{X}  -  \theta \right) \to \mathcal{N}(0,\sigma^2),
+    \end{equation}
+    then:
+    \begin{equation}
+        \sqrt{n}\left[ g\left( \bar{X} \right) - g(\theta) \right] \to \mathcal{N}\left( 0, \left(g^\prime(\theta)\right)^2 \sigma^2 \right)
+    \end{equation}
+    \item<+-> $\theta$ can be replaced by $\bar{X}$ in the right hand side.
+\end{itemize}
+\end{frame}
+\begin{frame}
+    \frametitle{The delta method}
+\begin{itemize}
+    \item<+-> Use the delta method to find a confidence interval at confidence level $0.9$ for the rate in the exponential distribution example.
+    \item<+-> Compare it with the one obtained by applying the inverse on the bounds of the confidence interval for $\lambda^{-1}.$
+\end{itemize}
+\end{frame}
+\begin{frame}
+    \frametitle{Slutsky's theorem}
+    \begin{itemize}
+    \item<+-> Let $Y_n$ be a family of random variables converging to a constant $c$ in the sense that, for any $\epsilon > 0$:
+    \[
+    P\left[ \lvert Y_n -c \rvert > \epsilon \right] \to 0,
+    \]
+    \item<+-> Let $X_1, \dots , X_n$ be an iid sample of a population distribution with expected value $\mu$ and variance $\sigma^2$.
+    \item<+-> Then:
+    \begin{equation}
+        \sqrt{n}\left( Y_n \bar{X} - c \mu \right) \to \mathcal{N}\left( 0, c^2 \sigma^2 \right).
+    \end{equation}
+    \item<+-> This theorem justifies the use of the sample variance instead of the true one in the TCL.
+\end{itemize}
+\end{frame}
+\begin{frame}
+    \frametitle{Normally distributed samples}
+    \begin{block}{Estimating the mean}
+\begin{itemize}
+    \item<+-> In the case of normally distributed samples, it is possible to derive confidence intervals even 
+    for small samples.
+    \item<+-> For a sample of size $n$, if $S$ is the sample standard deviation, then the confidence interval for the mean at 
+    level $1-\alpha$ is:
+    \begin{equation}
+        \left[ \bar{X} - c \frac{S}{\sqrt{n}}, \bar{X} + c \frac{S}{\sqrt{n}} \right]
+    \end{equation}
+    where $c$ is the value such that:
+    \begin{equation}
+        P\left[ \lvert T \rvert > c \right] = \alpha,
+    \end{equation}
+    $T$ being distributed according to a \textbf{Student's distribution} with $n-1$ degrees of freedom.
+\end{itemize}
+    \end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Normally distributed samples}
+    \begin{block}{Estimating the variance}
+\begin{itemize}
+    \item<+-> Using the same notations, a confidence interval at level $1-\alpha$ for the variance is:
+    \begin{equation}
+        \left[ \frac{(n-1)S^2}{c_2}, \frac{(n-1)S^2}{c_1} \right]
+    \end{equation}
+    where $c_1,c2$ are such that:
+    \begin{equation}
+        P\left[ \lvert Z \rvert > c_2 \right] = P\left[ \lvert Z \rvert < c_1 \right] = \frac{\alpha}{2}
+    \end{equation}
+    $X$ being distributed according to a \textbf{Chi square distribution} with $n-1$ degrees of freedom.
+\end{itemize}
+    \end{block}
+\end{frame}
 \end{document}
