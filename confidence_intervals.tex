@@ -121,6 +121,29 @@ sim_exp <- data.frame(n=1:100000,x=rexp(100000,rate=2))
 \end{itemize}
 \end{frame}
 \begin{frame}
+    \frametitle{Estimating a proportion}
+\begin{block}{Exercice}
+    In an operational setting, an approach is said to be abnormal if the aircraft crosses the boundary of 
+    a tube centered on the nominal trajectory. 1000 flights were recorded at Charles de Gaulle airport and 8 were
+    found to be abnormal. All the flights are assumed to be independent and the probability of one flight to be abnormal is $p$. Let $X_i$ 
+        be the random variable that takes the value $1$ if the i-th flight is abnormal, $0$ otherwise.
+    \begin{itemize}
+        \item Let $\bar{X}$ be the sample mean of $X_1,\dots,X_{1000}$. Find the expected value and the variance of $\bar{X}.$
+        \item Is $\bar{X}$ unbiased ? Consistent ?
+        \item Assuming $p$ is known, use the TCL to find an approximate distribution of $\bar{X}.$
+    \end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Estimating a proportion (Ctd.)}
+\begin{itemize}
+    \item Invoke Slutsky theorem to show that the true variance in the TCL can be replaced by 
+        $\bar{X}\left( 1 - \bar{X} \right).$
+    \item Deduce a confidence interval at level 0.95 for $p$.
+    \item What happens to the size of the confidence interval if the size of the sample is reduced ? Increased ?
+\end{itemize}
+\end{frame}
+\begin{frame}
     \frametitle{Normally distributed samples}
     \begin{block}{Estimating the mean}
 \begin{itemize}
@@ -140,6 +163,20 @@ sim_exp <- data.frame(n=1:100000,x=rexp(100000,rate=2))
     \end{block}
 \end{frame}
 \begin{frame}
+    \frametitle{Exercise}
+\begin{block}{Sample mean of a normal sample}
+    A milling machine produces mechanical parts of average length 40 mm with a standard deviation of $10^{-2}$ mm. 
+    The distribution of the length is assumed to be normal. Each day, 9 parts are sampled from the production batch and their average mean
+    $\bar{\mu}$ computed. 
+    \begin{itemize}
+        \item Give a confidence inteval for $\mu$ at confidence level $0.9.$ 
+        \item For the same confidence level, how many parts must the manufacturer sample each day to have a 
+        confidence interval of length $10^{-3}$ mm ?
+        \item Same questions when the standard deviation is only an estimation based on the unbiased estimator of variance.
+    \end{itemize}
+\end{block}    
+\end{frame}
+\begin{frame}
     \frametitle{Normally distributed samples}
     \begin{block}{Estimating the variance}
 \begin{itemize}
@@ -154,5 +191,16 @@ sim_exp <- data.frame(n=1:100000,x=rexp(100000,rate=2))
     $X$ being distributed according to a \textbf{Chi square distribution} with $n-1$ degrees of freedom.
 \end{itemize}
     \end{block}
+\end{frame}
+\begin{frame}
+    \frametitle{Exercise}
+\begin{block}{Sample variance of a normal sample}
+    For the same milling machine as in the previous exercise, the unbiased sample variance on a batch of 10 parts is
+    found to be $2\times 10^{-5}$.
+    \begin{itemize}
+        \item Give a confidence inteval for the true variance $\sigma$ at confidence level $0.9$
+        \item If the sample variance becomes $5 \times 10^{-5}$, can we conclude that the machine is malfunctionning ?
+    \end{itemize}
+\end{block}    
 \end{frame}
 \end{document}
