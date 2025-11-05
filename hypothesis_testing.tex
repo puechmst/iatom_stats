@@ -1,0 +1,348 @@
+\documentclass[main.tex]{subfiles}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+\usepackage{graphicx}
+
+\begin{document}
+\begin{frame}[plain]
+\frametitle{Elements of a statistical test (\textsc{I})}
+%\abovedisplayskip=0pt
+%\belowdisplayskip=0pt
+\begin{itemize}
+    \item The objective of a statistical test is to test a hypothesis concerning the values of one or more population parameters.
+    \item Any statistical test of hypothesis works in exactly the same way and is composed of the same essential elements:
+    \begin{enumerate}[<+->]
+    \item A null hypothesis $H_0$: the hypothesis to be tested;
+    \item Alternative hypothesis $H_1$: the hypothesis to be accepted in case $H_0$ is rejected;
+    \item Test statistic: function of the sample measurements
+    \item Rejection region (RR): specify the values of the test statistic for which the null hypothesis is rejected.
+\end{enumerate}
+\end{itemize}
+\begin{definition}
+A type \textsc{I} error is made if $H_0$ is rejected when $H_0$ is true. The probability of a type \textsc{I} error is denoted by $\color{blue} \alpha$. 
+
+A type \textsc{II} error is made if $H_0$ is accepted when $H_1$ is true. The probability of a type \textsc{II} error is denoted by $\color{blue} \beta$.
+\end{definition}
+\end{frame}
+
+
+\begin{frame}[plain]
+\frametitle{Elements of a statistical test (\textsc{II})}
+\abovedisplayskip=0pt
+\belowdisplayskip=0pt
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+    \hline
+& $H_0$ is true&$H_1$ is true\\
+\hline
+$H_0$ not rejected&Right & 
+Type \textsc{II} error\\
+\hline
+$H_0$ is rejected& Type \textsc{I} error& Right \\
+\hline
+\end{tabular}
+\end{center}
+{\color{blue}
+\begin{align*}
+ \alpha &= P(\text{rejecting}\; H_0\; \text{when}\; H_0\;\text{is true})\\
+ \beta&=P(\text{accepting}\; H_0\; \text{when}\; H_1\; \text{is true}).
+ \end{align*}}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+    \hline
+& $H_0$ is true&$H_1$ is true\\
+\hline
+$H_0$ not rejected&$\color{blue}1-\alpha$& $\color{blue}\beta$\\
+\hline
+$H_0$ is rejected&$\color{blue}\alpha$& $\color{blue}1-\beta$\\
+\hline
+\end{tabular}
+\end{center}
+\end{frame}
+\begin{frame}[plain]
+\frametitle{Common large-sample tests (\textsc{I})}
+
+\begin{itemize}[<+->]
+\item We want to test a hypothesis concerning a parameter $\color{blue} \theta$, based on a random sample $\color{blue} X_1,\cdots, X_n$.
+\vfill
+\item We will develop a procedure based on an estimator $\color{blue} \widehat{\theta}$ which has an (approximately) normal distribution with a mean of $\color{blue} \theta$ and a variance of $\textcolor{blue}{\sigma_{\widehat{\theta}}^2}$.
+\vfill
+\item We may wish to test $\color{blue} H_0: \theta=\theta_0$, versus $\color{blue} H_1: \theta>\theta_0$.
+\vfill
+\item If $\color{blue} \widehat{\theta}$ is close to $\color{blue} \theta_0$, it seems reasonable to accept $H_0$. However, if $\color{blue} \theta >\theta_0$, it is more likely that $\color{blue} \widehat{\theta}$ will be large.
+\vfill
+\item Then, here the test statistic is $\color{blue} \widehat{\theta}$ and the rejection region is $\color{blue} RR=\{\widehat{\theta} >k\}$ for some choice of $\color{blue} k$.
+\vfill
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[plain]
+\frametitle{Common large-sample tests (\textsc{II})}
+\vfill
+\begin{itemize}[<+->]
+\item The value of $\color{blue} k$ is determined by fixing the type \textsc{I} error probability $\color{blue} \alpha$. 
+\vfill
+\item If $H_0$ is true, then $\color{blue} \widehat{\theta}\sim \mathcal{N}(\theta_0,\sigma_{\widehat{\theta}}^2)$, therefore
+\[\textcolor{blue}{ \alpha =P(\widehat{\theta}>k)=P\left(\frac{\widehat{\theta}-\theta_0}{\sigma_{\widehat{\theta}}}> \frac{k-\theta_0}{\sigma_{\widehat{\theta}}}\right)}\]
+\vfill
+\item The appropriate choice for $\color{blue} k$ is $\color{blue} (k-\theta_0)/\sigma_{\widehat{\theta}}=z_{\alpha}$ with 
+$\color{blue} P(Z>z_\alpha)=\alpha$, that is
+\[\textcolor{blue}{ k=\theta_0 + z_\alpha \sigma_{\widehat{\theta}}}.\]
+\vfill
+\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+\frametitle{Common large-sample tests (\textsc{III})}
+\vfill
+\begin{itemize}[<+->]
+\item A test of $\color{blue} H_0: \theta=\theta_0$ against $\color{blue} H_1: \theta<\theta_0$ would be carried out in an analogous manner, except that $\color{blue} RR=\{z<-z_\alpha\}$ for the statistic $\color{blue} Z=(\widehat{\theta}-\theta_0)/\sigma_{\widehat{\theta}}$. 
+\vfill
+\item If we wish to test $\color{blue} H_0: \theta=\theta_0$ against $\color{blue} H_1: \theta \neq \theta_0$, the rejection region is $\color{blue} RR=\{|z| > z_{\alpha/2}\}$. 
+\vfill
+\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+\frametitle{Calculating type-II error}
+\abovedisplayskip=0pt
+\belowdisplayskip=0pt
+\begin{itemize}[<+->]
+\item Calculating $\color{blue} \beta$ can be very difficult for some statistical tests, but it is easy for the previous test.
+\item For the test $\color{blue} H_0: \theta=\theta_0$ against $\color{blue} H_1: \theta>\theta_0$ it is possible to calculate the type \textsc{II} error probability for only specific points in $\textcolor{blue}{H_1}$.
+\item Suppose that the experimenter has a specific alternative say, $\color{blue} \theta=\theta_a$ $\color{blue}(\theta_a >\theta_0)$ in mind. Because $\color{blue} RR=\{\widehat{\theta}: \; \widehat{\theta}>k\}$, we have
+\textcolor{blue}{
+\begin{align*}
+\beta&=P(\widehat{\theta} \text{ not in RR when } H_1 \text{ is true})\\
+&=P(\widehat{\theta}\leq k \text{ when } \theta=\theta_a)\\
+&=P\left(\frac{\widehat{\theta}-\theta_a}{\sigma_{\widehat{\theta}}}\leq \frac{k-\theta_a}{\sigma_{\widehat{\theta}}}\right).
+\end{align*} }
+\item If $\color{blue} \theta_a$ is the true value of $\color{blue} \theta$, then $\color{blue}(\widehat{\theta}-\theta_a)/\sigma_{\widehat{\theta}} \sim \mathcal{N}(0,1)$ and $\color{blue} \beta$ can be determined by the standard method.
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+\frametitle{Sample size for the $Z$ test}
+\abovedisplayskip=0pt
+\belowdisplayskip=0pt
+\begin{itemize}[<+->]
+\item For a fixed sample size $\color{blue} n$, the size of $\color{blue}\beta$ will depend upon the distance between $\color{blue} \theta_a$ and $\color{blue}\theta_0$;
+\item If $\color{blue} \theta_a$ is close to $\color{blue} \theta_0$, $\color{blue} \beta$ will tend to be large;
+\item If $\color{blue} \theta_a$ is far from $\color{blue} \theta_0$, $\color{blue} \beta$ will be considerable smaller.
+\item A large value of $\color{blue} \beta$ tells us that the sample size is too small.
+\item Suppose we want to test $\color{blue} H_0: \mu=\mu_0$ versus $\color{blue} H_1: \mu > \mu_0$. If you specify $\color{blue} \alpha$ and $\color{blue} \beta$ the test depends upon $\color{blue} n$ and $\color{blue} k$.
+\item We have
+\textcolor{blue}{
+\begin{align*}
+\alpha&=P\left(\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}} > \frac{k-\mu_0}{\sigma/\sqrt{n}} \right)=P(Z>z_\alpha)\\
+\beta&=P\left(\frac{\overline{X}-\mu_a}{\sigma/\sqrt{n}} \leq \frac{k-\mu_a}{\sigma/\sqrt{n}}\right)=P(Z \leq -z_\beta)
+\end{align*}}
+\item We obtain $\textcolor{blue}{\frac{k-\mu_0}{\sigma/\sqrt{n}}=z_\alpha, \quad \frac{k-\mu_a}{\sigma/\sqrt{n}}=-z_\beta}.$
+\item Eliminating $\color{blue} k$ gives
+\[\textcolor{blue}{ n=\frac{(z_\alpha + z_\beta)^2 \sigma^2}{(\mu_a-\mu_0)^2}}.\]
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+\frametitle{Results of a test: $p$-value (\textsc{I})}
+\abovedisplayskip=0pt
+\belowdisplayskip=0pt
+\begin{itemize}[<+->]
+\item The probability $\color{blue} \alpha$, called the \textbf{significance level} is somewhat arbitrary. One experimenter might choose $\color{blue} \alpha=0.05$, whereas another experimenter may prefer $\color{blue} \alpha=0.01$
+\item It is possible that two persons could analyse the same data, one concluding that $H_0$ should be rejected at the $\color{blue} \alpha=0.05$ significance level, and the other deciding that $H_0$ can't be rejected at $\color{blue} \alpha=0.01$
+
+\end{itemize}
+%\pause
+\onslide<+->
+\begin{definition} If $\color{blue} W$ is a test statistic, the \textbf{$p$-value} is the smallest level of significance, $\color{blue} \alpha$, for which the observed data indicates that the null-hypothesis should be rejected.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}[plain]
+\frametitle{Results of a test: $p$-value (\textsc{II})}
+\abovedisplayskip=0pt
+\belowdisplayskip=0pt
+If an experimenter chooses $\color{blue} \alpha \geq p\text{-value}$, $H_0$ is rejected. Otherwise, if $\color{blue}\alpha < p\text{-value}$, $H_0$ cannot be rejected.
+
+The general method of computing $p$-values is the following:
+\pause
+\vfill
+\begin{itemize}[<+->]
+\item If one were to reject $H_0$ in favour of $H_1$ for small values of a test statistic $W$, the $p$-value associated with an observed value of $W$, say $w_0$ is given by
+\[\textcolor{blue}{p\text{-value} = P(W \leq w_0, \text{ when $H_0$ is true})}.\]
+\vfill
+\item Analogously, if $H_0$ should be rejected for large values of $\color{blue} W$
+\[\textcolor{blue}{p\text{-value} = P(W \geq w_0, \text{ when $H_0$ is true})}.\]
+\end{itemize}
+\vfill
+%\begin{exer} Find the $p$-value for the statistical test of Exercise 70. \textit{Solution}: Because the test is two-tailed, the $p$-value is the probability that $Z \leq -2.5$ or $Z \geq 2.5$. From Table 4, $P(Z \geq 2.5)=P(Z\leq-2.5)=0.0062$, then the $p\text{-value}=(2)(0.0062)=0.0124$. Thus if $\alpha=0.05$, we reject $H_0$ in favour of $H_1$. However, if $\alpha=0.01$ were chosen, we could not claim a difference in mean reaction times for the two sexes. \end{exer}
+\end{frame}
+
+\begin{frame}[plain]
+\frametitle{Test and Student's distribution (\textsc{I})}
+\abovedisplayskip=0pt
+\belowdisplayskip=0pt
+\begin{itemize}[<+->]
+\item We assume that $\color{blue} X_1,\cdots, X_n$ denotes a random sample of size $\color{blue} n$ from a \textbf{normal distribution} with unknown mean $\color{blue} \mu$ and unknown variance $\color{blue} \sigma^2$.
+\item If $\color{blue} \overline{X}$ and $\color{blue} S$ denote the sample mean and standard deviation respectively, and if $\color{blue} H_0:\mu=\mu_0$ is true, then
+\[\textcolor{blue}{T=\frac{\overline{X}-\mu}{S/\sqrt{n}} \sim t(n-1)}.\]
+\item Because the $t$-distribution is symmetric it is clear that the rejection region for a small sample test of $H_0$ would be determined exactly the same way as for the large-sample $Z$ test.
+\end{itemize}
+
+\onslide<+->
+\[\textcolor{blue}{ H_0:  \mu=\mu_0, \; H_1:  \begin{cases} \mu>\mu_0\\ \mu<\mu_0\\ \mu \neq \mu_0\end{cases} \; T=\frac{\overline{X}-\mu_0}{S/\sqrt{n}}, \;  RR=\begin{cases} t>t_\alpha\\ t<-t_\alpha\\ |t|>t_{\alpha/2} \end{cases}}\]
+\end{frame}
+
+
+
+\begin{frame}[plain]
+\frametitle{Test and Student's distribution (\textsc{II})}
+\abovedisplayskip=0pt
+\belowdisplayskip=0pt
+\begin{itemize}[<+->]
+\item A second application of the $t$-distribution is its use in constructing a small-sample test to compare the means of two normal population that possess equal variances.
+\item We have independent random samples from each population
+\[\textcolor{blue}{ X_{11},\cdots,X_{1 n_1} \sim \mathcal{N}(\mu_1,\sigma^2), \; X_{21},\cdots,X_{2 n_2} \sim \mathcal{N}(\mu_2,\sigma^2)}.\]
+\item Assume that $\color{blue} \overline{X}_i, S_i^2$, $\color{blue} i=1,2$ are the corresponding sample means and variances. Then, we showed in Section 8.8 that if
+\[\textcolor{blue}{S^2=\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}}\]
+is the pooled estimator for $\color{blue}  \sigma^2$, then
+\[\textcolor{blue}{ T= \frac{(\overline{X}_1-\overline{X}_2)-(\mu_1-\mu_2)}{S\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}} \sim t(n_1+n_2-2)}.\]
+\item If $\color{blue}  H_0; \mu_1-\mu_2=D_0$ for some value of $\color{blue}  D_0$, it follows that if $H_0$ is true then 
+\[\textcolor{blue}{T= \frac{(\overline{X}_1-\overline{X}_2)-D_0}{S\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}} \sim t(n_1+n_2-2)}.\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+\frametitle{Test and Student's distribution (\textsc{III})}
+\abovedisplayskip=0pt
+\belowdisplayskip=0pt
+\begin{description}[<+->]
+\item[\textcolor{black}{Assumptions:}] Independent samples from normal distributions with the \textbf{same variance}
+\[\textcolor{blue}{H_0:  \mu_1-\mu_2=D_0, \quad H_1:  \begin{cases} \mu_1-\mu_2>D_0\\ \mu_1-\mu_2<D_0\\ \mu_1-\mu_2 \neq D_0\end{cases}}\]
+\item[\textcolor{black}{Test-Statistic:}] 
+\[\textcolor{blue}{T= \frac{(\overline{X}_1-\overline{X}_2)-D_0}{S\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}, \quad S=\sqrt{\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}}}\]
+\item[\textcolor{black}{Rejection Region:}] $\textcolor{blue}{RR: \begin{cases} t>t_{\alpha, n_1+n_2-2} \\ t<-t_{\alpha, n_1+n_2-2} \\ |t|>t_{\alpha/2, n_1+n_2-2} \end{cases}}$
+\end{description}
+%\pause
+Like the $t$-test for a single mean, the $t$-test for comparing two populations means is robust relative to the assumption of normality. It is also robust relative to assumption that $\sigma_1^2=\sigma_2^2$ when $n_1=n_2$ are equal (or nearly equal).
+\end{frame}
+
+\begin{frame}[plain]
+\frametitle{Testing hypotheses concerning variances(\textsc{I})}
+\abovedisplayskip=0pt
+\belowdisplayskip=0pt
+\begin{itemize}[<+->]
+\item We again assume that we have a random sample $\color{blue} X_1,\cdots,X_n$ from a normal distribution with an unknown mean of $\color{blue} \mu$ and an unknown variance of $\color{blue} \sigma^2$.
+\item We test $\color{blue} H_0: \sigma^2=\sigma_0^2$ for some fixed value $\color{blue} \sigma_0^2$ versus various alternative hypotheses. 
+\item We know that $\color{blue}\chi^2=\frac{(n-1)S^2}{\sigma_0^2}$
+has a $\chi^2$ distribution with $\color{blue}n-1$ degrees of freedom when $H_0$ is true.
+\item If we desire to test $\color{blue} H_0$ against $\color{blue} H_1: \sigma^2>\sigma_0^2$, we can use this statistic $\chi^2$ has our test statistic, but how should we select the rejection region, RR?
+\item If $H_1$ is true, then we would expect $\color{blue} S^2$ to be larger than $\textcolor{blue}{\sigma_0^2}$. The larger $\textcolor{blue}{S^2}$ is relative to $\textcolor{blue}{\sigma_0^2}$, the stronger will be the evidence to support $H_1$. Thus we see that a rejection region of the form $\color{blue} RR=\{\chi^2>k\}$ for some constant $\color{blue} k$ would be appropriate.
+\item If we desire a test for which the probability of a type \textsc{I} error is $\color{blue}\alpha$, then we use the rejection region $\color{blue} RR =\{\chi^2>\chi^2_\alpha\}$, where $\color{blue} P(\chi^2>\chi^2_\alpha)=\alpha$.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[plain]
+\frametitle{Testing hypotheses concerning variances (\textsc{II})}
+\abovedisplayskip=0pt
+\belowdisplayskip=0pt
+\begin{description}[<+->]
+\item[\textcolor{black}{Assumptions:}]  $\color{blue} X_1,\cdots,X_n$ is a random sample from a normal distribution with mean $\color{blue} \mu$ and variance $\color{blue}\sigma^2$
+\textcolor{blue}{ 
+\begin{align*}
+H_0&:  \sigma^2=\sigma_0^2,\\
+ H_1&:  \begin{cases} \sigma^2>\sigma_0^2\\ \sigma^2<\sigma_0^2\\ \sigma^2 \neq\sigma_0^2\end{cases}
+\end{align*}
+}
+\item[\textcolor{black}{Test Statistic:}] $\color{blue} \chi^2= \frac{(n-1)S^2}{\sigma_0^2}$
+
+\item[\textcolor{black}{Rejection Region:}] $\color{blue}\text{RR:} \begin{cases} \chi^2>\chi^2_{\alpha, n-1} \\ \chi^2<\chi^2_{1-\alpha, n-1} \\ \chi^2>\chi^2_{\alpha/2, n-1} \text{ or } \chi^2<\chi^2_{1-\alpha/2, n-1} \end{cases}$
+\end{description}
+Note that $\color{blue} \chi^2_\alpha$ is chosen so that $\color{blue} P(\chi^2>\chi^2_\alpha)=\alpha$ (See Table 6).
+
+\end{frame}
+
+
+\begin{frame}[plain]
+\frametitle{{\large Testing hypotheses concerning variances (\textsc{III})}}
+\abovedisplayskip=0pt
+\belowdisplayskip=0pt
+\begin{itemize}[<+->]
+\item Sometimes, we wish to compare the variances if two normal distributions by testing to determine whether or not they are equal. 
+\item For example, suppose that $\color{blue} X_{11},\cdots,X_{1n_1}$, and $\color{blue} X_{21},\cdots,X_{2 n_2}$ are independent random samples from normal distributions with unknown means and that $\color{blue}V(X_{1i})=\sigma_1^2$ and $\color{blue}V(X_{2i})=\sigma_2^2$, where $\color{blue}\sigma_1^2$ and $\color{blue}\sigma_2^2$ are unknown. 
+\item Suppose we want to test the null hypothesis $\color{blue} H_0: \sigma_1^2=\sigma_2^2$ against the alternative $\color{blue} H_1:\sigma_1^2>\sigma_2^2$.
+\item Because the sample variances $\color{blue} S_1^2$ and $\color{blue} S_2^2$ estimate the respective population variances, $\color{blue} \sigma_1^2$ and $\color{blue}\sigma_2^2$, we would reject $H_0$ in favour of $H_1$ if $\color{blue}S_1^2$ is much larger than $\color{blue}S_2^2$. 
+\item We use a rejection region of the form
+\[\textcolor{blue}{RR=\left \{\frac{S_1^2}{S_2^2}>k\right\}},\]
+where $\color{blue} k$ is chosen so that the probability of the type \textsc{I} error is $\color{blue} \alpha$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+\frametitle{{\large Testing hypotheses concerning variances(\textsc{IV})}}
+\abovedisplayskip=0pt
+\belowdisplayskip=0pt
+\begin{itemize}[<+->]
+\item The appropriate value of $\color{blue} k$ depends upon the distribution of $\color{blue} S_1^2/S_2^2$. Note that $\color{blue} (n_1-1)S_1^2/\sigma_1^2$ and $\color{blue} (n_2-1)S_2^2/\sigma_2^2$ are independent chi-square random variables and it follows that
+\[\textcolor{blue}{F=\frac{(n_1-1)S_1^2}{\sigma_1^2 (n_1-1)} \Bigl/\frac{(n_2-1)S_2^2}{\sigma_2^2 (n_2-1)}=\frac{S_1^2 \sigma_2^2}{S_2^2 \sigma_1^2} \sim F(n_1-1,n_2-1)}.\]
+\item Under the null hypothesis, $\color{blue} \sigma_1^2=\sigma_2^2$, then $\color{blue}F=S_1^2/S_2^2$ and the rejection region RR given earlier is equivalent to 
+\[\textcolor{blue}{RR=\{F > k \}=\{F > F_\alpha\}},\]
+where $\color{blue} F_\alpha$ is the value of the $F$ distribution with $\color{blue} \nu_1=n_1-1$ and $\color{blue} \nu_2=n_2-1$ such that $\color{blue} P(F>F_\alpha)=\alpha$ (See Table 7).
+\item Suppose that our alternative hypothesis was $\textcolor{blue}{H_1: \sigma_1^2<\sigma_2^2}$. 
+How would we proceed? We are free to identify either population as population $1$. 
+Therefore, if we simply interchange the arbitrary labels of $1$ and $2$ 
+on the two populations (and the corresponding identifiers on sample sizes, sample variances, etc.),
+ our alternative hypothesis becomes $\textcolor{blue}{H_1: \sigma_1^2>\sigma_2^2}$. 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[plain]
+\frametitle{{\large Testing hypotheses concerning variances (\textsc{V})}}
+%\abovedisplayskip=0pt
+%\belowdisplayskip=0pt
+\begin{description}
+\item[\textcolor{black}{Assumptions:}] Independent samples from normal populations
+$$\color{blue} H_0:  \sigma_1^2=\sigma_2^2, \quad  H_1: \sigma_1^2>\sigma_2^2 $$
+\item[\textcolor{black}{Test -Statistic:}] \[\textcolor{blue}{F= \frac{S_1^2}{S_2^2}}\]
+
+\item[\textcolor{black}{Rejection Region:}]  \[\textcolor{blue}{RR=\{F>F_\alpha\}},\] where  $\color{blue}F_\alpha$ is chosen so that $\color{blue} P(F>F_\alpha)=\alpha$, when $F$ has $\color{blue}\nu_1=n_1-1$ and $\color{blue}\nu_2=n_2-1$ degrees of freedom (See Table 7).
+\end{description}
+\end{frame}
+
+\begin{frame}[plain]
+\frametitle{{\large Testing hypotheses concerning variances(\textsc{VI})}}
+\abovedisplayskip=0pt
+\belowdisplayskip=0pt
+\begin{itemize}[<+->]
+\item If we wish to test $\color{blue} H_0:\sigma_1^2=\sigma_2^2$ against $\color{blue} H_1: \sigma_1^2 \neq \sigma_2^2$, with type \textsc{I} error $\color{blue} \alpha$, we could employ $\color{blue} F=S_1^2/S_2^2$ as a test statistic and reject $H_0$ if the calculated $\color{blue} F$ is in either the upper or lower $\color{blue} \alpha/2$ tail of the $F$ distribution. 
+\item The upper-tail critical values can be determined directly from a table.
+\item In order to determine the lower-tail critical values, we note that $\textcolor{blue}{F}$ and $\color{blue} F^{-1}=S_2^2/S_1^2$ both have $F$ distributions, but that the degrees of freedom are interchanged.
+\item Let $\color{blue} F^a_b$ denote a random variable with an $F$ distribution with $\color{blue}  \nu_1=a$ and $\color{blue}  \nu_2=b$ degrees of freedom, and let $\color{blue} F^a_{b,\alpha/2}$ be such that 
+\[\textcolor{blue}{P(F_b^a >F^a_{b,\alpha/2})=\alpha/2}\]
+ Then 
+\[\textcolor{blue}{P\left( (F^a_b)^{-1}< (F^a_{b,\alpha/2})^{-1}\right)=\alpha/2}\]
+and therefore
+\[\textcolor{blue}{P(F^b_a<(F^a_{b,\alpha/2})^{-1})=\alpha/2}\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+\frametitle{{\large Testing hypotheses concerning variances (\textsc{VII})}}
+%\abovedisplayskip=0pt
+%\belowdisplayskip=0pt
+\begin{itemize}[<+->]
+\item That is, the value that cuts off the lower-tail area of $\color{blue} \alpha/2$ for an $\color{blue} F^b_a$ distribution can be found by inverting $\color{blue} F^a_{b,\alpha/2}$. Thus if we use $\color{blue} F=S_1^2/S_2^2$ as a test statistic for testing $\color{blue} H_0:\sigma_1^2=\sigma_2^2$ against $\color{blue} H_1: \sigma_1^2 \neq \sigma_2^2$, the appropriate rejection region is
+\[\textcolor{blue}{RR: \{F>F^{n_1-1}_{n_2-1,\alpha/2} \text{ or } F<(F^{n_2-1}_{n_1-1,\alpha/2})^{-1}\}}.\]
+\vfill
+\item An equivalent test is obtained as follows. Let $\color{blue} n_L$ and $\textcolor{blue}{n_S}$ denote the sample sizes associated with the larger and smaller samples variances respectively. Place the large sample variance in the numerator and the smaller sample variance in the denominator of the $\color{blue} F$ statistic and reject $\color{blue} H_0:\sigma_1^2=\sigma_2^2$ in favour of $\color{blue} H_1: \sigma_1^2\neq\sigma_2^2$ if $\color{blue} F>F_{\alpha/2}$ where $\color{blue} F_{\alpha/2}$ is determined for $\color{blue} \nu_1=n_L-1$ and $\color{blue} \nu_2=n_S-1$.
+\end{itemize}
+\vfill
+\end{frame}
+\end{document}
