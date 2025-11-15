@@ -1,0 +1,163 @@
+
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath,amssymb,booktabs,geometry,setspace}
+\geometry{margin=1in}
+\onehalfspacing
+
+\usepackage[svgnames]{xcolor}
+
+\newcommand{\question}[1]{\textcolor{blue}{#1}}
+
+% Estimation, Confidence Intervals, and Hypothesis Testing
+
+
+\title{Statistics Project: Inference on Flight Performance}
+\author{\today}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Context and Dataset}
+
+This project focuses on the statistical analysis of simulated operational data from Airbus. The dataset \texttt{Airbus\_simu.csv} contains several flights with the following fields:
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Variable} & \textbf{Description} & \textbf{Unit} \\
+\midrule
+\texttt{index} & Row index & -- \\
+\texttt{callsign} & Flight callsign & -- \\
+\texttt{flight\_time} & Total flight time & seconds \\
+\texttt{distance} & Distance flown & meters \\
+\texttt{fuel} & Fuel consumed & kilograms \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Each observation corresponds to a unique flight. Some flights may appear several times in the raw file, and duplicates must be removed.  
+New variables should be derived for the analysis:
+
+\[
+\begin{aligned}
+\text{Flight time (h)} & = \frac{\text{flight\_time (s)}}{3600}, \\
+\text{Distance (km)} & = \frac{\text{distance (m)}}{1000}, \\
+\text{Average speed (km/h)} & = \frac{\text{Distance (km)}}{\text{Flight time (h)}}, \\
+\text{Fuel rate (kg/km)} & = \frac{\text{fuel (kg)}}{\text{Distance (km)}}. \\
+\end{aligned}
+\]
+
+For comparative analysis, consider two types of flights based on the flight time:
+\[
+\text{``Short'' if time} < \text{3 hours}, \quad
+\text{``Long'' if time} > \text{6 hours}.
+\]
+
+\section{Project Objectives}
+
+The goal of this project is to apply the principles of estimation, confidence intervals, and hypothesis testing to aeronautical performance data.  
+The analysis should rely on the Central Limit Theorem (CLT) or normality assumptions where applicable.
+\section{Preliminaries}
+\subsection{Equality of mean test}
+Let $(X_1,\dots,X_n)$ and $(Y_1,\dots,Y_m)$ be independent iid samples from two populations. The purpose of this section is to design a test with null hypothesis
+$H_0: E \left[ X_1 \right] = E \left[Y_1\right]$ against the alternative hypothesis $H_1 :E \left[ X_1 \right] \neq E \left[Y_1\right]$.
+\begin{enumerate}
+    \item Let $S_X^2$ (resp. $S_Y^2$) be the sample variance of the first (resp. second) sample. Assuming $n,m \geq 30,$ justify that the distribution of:
+    \[
+    \bar{X} - E\left[X_1\right] \left(\text{ resp. } \bar{Y} - E\left[Y_1\right]\right) 
+        \]
+    is approximately  $\mathcal{N}\left( 0, S_X^2/n \right)$ (resp. $\mathcal{N}\left( 0, S_Y^2/m \right)$) .
+    \item It can be proved that the sum of two independent random variables with respective distributions 
+    $\mathcal{N}\left( \mu_1, \sigma_1^2 \right), \mathcal{N}\left( \mu_2, \sigma_2^2 \right)$ is  $\mathcal{N}\left( \mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2 \right)$
+    distributed. Under the null hypothesis $H_0$, explain why:
+    \[
+        \frac{\bar{X}-\bar{Y}}{\sqrt{\frac{S_X^2}{n}+\frac{S_Y^2}{m}}}
+      \]
+    is approximately $\mathcal{N}\left( 0,1 \right)$ distributed.
+    \item Design a test with $1-\alpha$ confidence level for $H_0$ against $H_1.$
+\end{enumerate}
+\subsection{Testing for normality}
+Do some research on "Shapiro-Wilk test" and report the result. Give your interpretation about this test. Find information about Q--Q plots and their use for normality
+testing.
+\subsection{Pearson's correlation}
+Find what is a linear model and what is Pearson's correlation. Summarize in a short paragraph your understanding of these notions. 
+\section{Questions}
+
+\begin{enumerate}
+    \item \textbf{Data cleaning}: Delete data larger than 16 hours. Separate the original dataset into two datasets: short-haul and long-haul flights.
+    
+    \item \textbf{Estimation of Mean Speed:}  
+    Estimate the mean cruise speed (in km/h) for short-haul and long-haul flights respectively.  
+    Construct a 95\% confidence interval for each, using the Central Limit Theorem.
+    
+    \item \textbf{Estimation of Fuel Efficiency:}  
+    Estimate the mean fuel consumption rate (in kg/km) and its 95\% confidence interval for each of the two datasets.  
+    Comment on the precision of the estimate and its operational interpretation.
+    
+    \item \textbf{Comparison of Short and Long Flights on the Speed:}  
+    Test whether there is a significant difference in average cruise speed between short and long flights:
+    \[
+    H_0: \mu_{\text{short}} = \mu_{\text{long}} \quad \text{vs.} \quad H_1: \mu_{\text{short}} \ne \mu_{\text{long}}.
+    \]
+    
+    \item \textbf{Comparison of Short and Long Flights on the Fuel Rate:}  
+    Test whether longer flights have significantly different fuel efficiency compared with shorter ones:
+    \[
+    H_0: \mu_{\text{short}} = \mu_{\text{long}} \quad \text{vs.} \quad H_1: \mu_{\text{short}} \ne \mu_{\text{long}}.
+    \]
+    
+    \item \textbf{Correlation Analysis:}  
+    Examine whether flight distance and average fuel consumption rate (kg/km) are significantly correlated:
+    \[
+    H_0: \rho = 0 \quad \text{vs.} \quad H_1: \rho \ne 0.
+    \]
+    Provide the Pearson correlation coefficient and interpret its magnitude and sign.
+    
+    
+    \item \textbf{Validation of Normality:}  
+    Verify whether the variables (flight time, distance, fuel rate) follow a normal distribution using the Shapiro--Wilk test and Q--Q plots.  
+    Discuss how the Central Limit Theorem justifies the use of normal-based inference even when normality is not perfect.
+\end{enumerate}
+
+
+\section{Understand the P-Values}
+
+Compute \textbf{p-values} for all hypothesis tests and interpret them in context.
+For example, one can use p-values to support conclusions:
+    \begin{itemize}
+        \item $p < 0.05$: reject $H_0$, conclude evidence for the alternative.
+        \item $p \ge 0.05$: fail to reject $H_0$, conclude no significant evidence.
+    \end{itemize}
+
+\begin{itemize}
+    \item For two-sample t-tests (speed or fuel rate), report:
+    \[
+    t \text{ statistic}, \text{ degrees of freedom (df), and } p\text{-value}.
+    \]
+    Interpret whether the difference between short and long flights is statistically significant at the 1\%, 5\%, 10\% level.
+    
+    \item For correlation analysis, report:
+    \[
+    r \text{ (Pearson correlation)}, t\text{-statistic}, \text{df}, p\text{-value}.
+    \]
+    Comment on the strength and significance of the correlation.
+    
+\end{itemize}
+
+\section{Deliverables}
+
+\begin{itemize}
+    \item Written report with cleaned dataset, statistical results, confidence intervals, p-values, and interpretations.
+    \item Power BI dashboard visualizing:
+    \begin{itemize}
+        \item Mean speed and fuel rate with 95\% confidence intervals.
+        \item Comparison of short vs long flights.
+        \item Scatter plot of distance vs fuel consumption rate 
+    \end{itemize}
+    \item R script including data cleaning, derived variables, estimation, CI computation, hypothesis testing, and export to Power BI.
+\end{itemize}
+
+
+
+\end{document}
