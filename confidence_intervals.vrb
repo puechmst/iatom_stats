@@ -1,0 +1,12 @@
+\frametitle{Exponential distribution}
+    \begin{itemize}
+        \item<+-> This exercise is an illustration of the method of moments.
+        \item<+-> Using PowerBI and R, generate a population from an exponential distribution with rate 2:
+{\footnotesize
+\begin{verbatim}
+sim_exp <- data.frame(n=1:100000,x=rexp(100000,rate=2))
+\end{verbatim}}
+        \item<+-> Compute the mean $m$ and the standard deviation $\sigma$ (square root of the variance) on $1000$ samples of size $1000$.
+        \item<+-> Estimate the number of times $\lvert m - 0.5 \rvert$ (resp. $\lvert \sigma - 0.5 \rvert$) is greater than $0.026.$
+        \item<+-> In your opinion, which estimator of the inverse of the rate is the best one ?
+    \end{itemize}

@@ -1,0 +1,13 @@
+\beamer@slide {<label>}{4}
+\beamer@slide {fig:variable}{4}
+\beamer@slide {fig:arbitrary_range}{5}
+\beamer@slide {fig:complex_numbers}{6}
+\beamer@slide {fig:booleans}{6}
+\beamer@slide {fig:char_strings}{7}
+\beamer@slide {fig:str_func}{7}
+\beamer@slide {fig:vect_op}{8}
+\beamer@slide {fig:vect_comp}{8}
+\beamer@slide {fig:vect_elts}{9}
+\beamer@slide {fig:vect_bool}{9}
+\beamer@slide {fig:data_frame}{10}
+\beamer@slide {fig:data_transform}{12}

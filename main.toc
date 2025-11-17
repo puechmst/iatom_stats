@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{Visual exploration of data}{6}{0}{2}
+\beamer@sectionintoc {3}{Probability theory}{27}{0}{3}
+\beamer@sectionintoc {4}{Estimation}{67}{0}{4}

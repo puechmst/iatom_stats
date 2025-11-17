@@ -1,0 +1,25 @@
+\begin{block}{Part 4: Understanding Consistency}
+\textbf{Task (5 min):} Investigate the consistency of the sample mean estimator.
+Recall: An estimator $\hat{\theta}_n$ is \textbf{consistent} if, for any $\epsilon > 0$,
+\[
+    \lim_{n \to +\infty} P\left(|\hat{\theta}_n - \theta| > \epsilon\right) = 0.
+\]
+
+\textbf{Run R codes:}
+{\footnotesize
+\begin{verbatim}
+sample_sizes <- c(10, 50, 200, 1000, 5000)
+true_mean <- mean(population$x)
+errors <- sapply(sample_sizes, function(n) {
+ means <- replicate(1000, mean(sample(population$x, n)));
+ mean(abs(means - true_mean) > 1) })
+deviation_proba <- data.frame(n = sample_sizes, P_error = errors)
+\end{verbatim}}
+
+\textbf{Answer questions:}
+\begin{itemize}\small
+  \item What happens to $P(|\bar{X}_n - \mu| > 1)$ as $n$ increases?
+  \item How does this result illustrate the definition of consistency?
+  \item Why is the sample mean a consistent estimator of the population mean?
+\end{itemize}
+\end{block}

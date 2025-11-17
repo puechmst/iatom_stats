@@ -1,0 +1,1 @@
+\beamer@sectionintoc {1}{Visual exploration of data}{1}{0}{1}

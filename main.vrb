@@ -1,0 +1,18 @@
+\frametitle{Introductory example}
+\begin{block}{Delays dataset}
+   \begin{itemize}
+    \item<+-> Download the file "delays.csv" and open it in PowerBI.
+    \item<+-> Use the R visual tab to create an histogram:
+    \begin{lstlisting}[language=R]
+hist(dataset$Column3,breaks=100,freq=FALSE)
+    \end{lstlisting}
+    \item<+-> Negative delays are not of interest for us. Use the "Filters" pane to keep only postive ones.
+    \item<+-> Create a new measure and type:
+    {\small
+    \begin{verbatim}
+avg_delays = AVERAGEX(FILTER(delays,delays[Column3]>=0),
+                            delays[Column3])
+    \end{verbatim}}
+    \item<+-> Finally, visualize the newly created measure by selecting the 'Card' visual.
+   \end{itemize}
+\end{block}

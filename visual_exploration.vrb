@@ -1,0 +1,13 @@
+\frametitle{PowerBI and R}
+\begin{block}{Visuals}
+    \begin{itemize}
+        \item<+-> On the \texttt{visualizations} pane, select the \texttt{R} icon.
+        \item<+-> Drag the \texttt{y} field in the visual.
+        \item<+-> In the script box, type:
+        \begin{lstlisting}{language=R}
+hist(dataset$y)
+        \end{lstlisting}
+        \item<+-> An histogram is displayed in the visual.
+        \item<+-> This may be useful when a given visual, like the histogram, is not implemented in PowerBI or requires a plugin.
+    \end{itemize}
+\end{block}
